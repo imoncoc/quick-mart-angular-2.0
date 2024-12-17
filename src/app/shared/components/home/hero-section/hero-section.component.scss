@@ -1,0 +1,46 @@
+
+.header {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
+    url("https://images.unsplash.com/photo-1652897995621-60d07fb6806b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+      no-repeat center center fixed;
+  background-size: cover;
+  height: calc(100vh - 96px);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-content {
+  /* padding: 250px; */
+  padding: 40px;
+  color: #fff;
+}
+
+.header-title {
+  font-size: 56px;
+  margin-bottom: 10px;
+}
+
+.header-description {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.btn-journey:link,
+.btn-journey:visited {
+  background-color: var(--primary-color);
+  color: var(--color-white);
+  font-size: 1.6rem;
+  padding: 1.2rem 2.4rem;
+  border-radius: 4rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-journey:hover,
+.btn-journey:active {
+  background-color: var(--primary-color-tint);
+}
