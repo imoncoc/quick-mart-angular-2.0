@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: 'products',
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsModule),
+  },
+  {
     path: 'not-found',
     loadChildren: () =>
       import('./error/error.module').then((m) => m.ErrorModule),
