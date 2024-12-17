@@ -13,28 +13,28 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        Home
+        {{ "Home" | uppercase }}
       </li>
       <li
         class="main-nav-link"
         routerLink="/products"
         routerLinkActive="active"
       >
-        Products
+        {{ "Products" | uppercase }}
       </li>
       <li
         class="main-nav-link"
         routerLink="/auth/login"
         routerLinkActive="active"
       >
-        About
+        {{ "About" | uppercase }}
       </li>
       <li
         class="main-nav-link"
         routerLink="/auth/login"
         routerLinkActive="active"
       >
-        Contact
+        {{ "Contact" | uppercase }}
       </li>
     </ul>
   </nav>

@@ -81,7 +81,8 @@ Medium: 11px
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
+  font-family: "Blinker", sans-serif;
 }
 
 html {
@@ -255,6 +256,7 @@ body {
 .btn--full:hover,
 .btn--full:active {
   background-color: #cf711f;
+  color: #fff;
 }
 
 .btn--outline:link,

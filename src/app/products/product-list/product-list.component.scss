@@ -40,10 +40,45 @@
     font-weight: 500;
   }
 
+  .category-and-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .card-category {
+    padding: 8px 16px;
+    margin: 4px;
+    // background-color: #e0f7fa;
+    // border: 1px solid #b2ebf2;
+    background-color: var(--primary-color-fade);
+    border: 1px solid var(--primary-color-tint);
+    border-radius: 16px;
+    font-size: 14px;
+
+    font-weight: 500;
+    color: var(--primary-color);
+    cursor: default;
+    white-space: nowrap;
+  }
+
   .card-price {
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 0.8rem;
+  }
+
+  .card-brand-star {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  .card-brand {
+    font-size: 14px;
   }
 
   .card-icon {
@@ -57,7 +92,10 @@
   }
 
   .collection-star {
-    margin-bottom: 0.875rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin-bottom: 0.875rem;
   }
 
   .card-description {
@@ -69,4 +107,9 @@
   .full-btn {
     width: 100%;
   }
+}
+
+.products-btn-container {
+  display: flex;
+  gap: 16px;
 }
