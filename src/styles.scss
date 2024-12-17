@@ -81,6 +81,7 @@ Medium: 11px
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 html {
@@ -212,9 +213,9 @@ body {
   display: inline-block;
 
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 600;
-  padding: 1rem 2rem;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 20px;
   border-radius: 9px;
 
   /* Only necessary for .btn */
@@ -230,11 +231,11 @@ body {
 .btn-primary {
   background-color: var(--primary-color);
   color: #fff;
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 18px;
   border: 0;
   padding: 12px 24px;
-  height: 48px;
+  // height: 36px;
   border-radius: 5px;
   transition: all 0.3s;
   cursor: pointer;
