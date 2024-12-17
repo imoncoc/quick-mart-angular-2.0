@@ -1,1 +1,29 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="container footer-container">
+    <div class="footer-grid">
+      <div class="footer-nav">
+        <div class="footer-div" routerLink="/">
+          <img src="../../assets/images/logo.png" class="logo" alt="" />
+          <p class="footer-title">
+            Quick <span class="footer-title-color">Mart</span>
+          </p>
+        </div>
+        <div class="footer-link" routerLink="/products">Products</div>
+        <div class="footer-link">Contact</div>
+        <div class="footer-link">About</div>
+      </div>
+
+      <!-- Left site -->
+      <div class="footer-icon-div">
+        <p><i class="fa-brands fa-2x fa-square-facebook footer-icon"></i></p>
+        <p><i class="fa-brands fa-2x fa-instagram footer-icon"></i></p>
+        <p><i class="fa-brands fa-2x fa-square-twitter footer-icon"></i></p>
+      </div>
+    </div>
+
+    <p class="footer-copyright">
+      Copyright <span class="name">©{{ newData.getFullYear() }}</span> All
+      rights reserved by <span class="name">Md Imon Hossain</span>.
+    </p>
+  </div>
+</footer>
