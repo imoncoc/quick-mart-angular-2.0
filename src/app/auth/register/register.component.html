@@ -1,1 +1,113 @@
-<p>register works!</p>
+<section class="container">
+  <div class="login-container">
+    <div class="login-container-div cta">
+      <p class="login-title">Sign Up</p>
+      <p class="login-description">It's free and takes a minute</p>
+      <div>
+        <form class="cta-form" name="sign-up">
+          <div>
+            <label>Full Name</label>
+            <input
+              id="fullname"
+              type="text"
+              placeholder="Mr Jhon Doe"
+              name="fullname"
+              required
+            />
+          </div>
+          <div>
+            <label>Email address</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="me@example.com"
+              name="email"
+              required
+            />
+          </div>
+          <div>
+            <label>User Name</label>
+            <input
+              id="username"
+              type="text"
+              placeholder="jhon"
+              name="username"
+              required
+            />
+          </div>
+
+          <div style="position: relative">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Enter your password"
+              name="password"
+              required
+              style="padding-right: 2.5rem"
+            />
+            <i
+              class="fa-solid"
+              [class.fa-eye]="!showPassword"
+              [class.fa-eye-slash]="showPassword"
+              (click)="togglePasswordVisibility()"
+              style="
+                position: absolute;
+                right: 1rem;
+                top: 70%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                color: #aaa;
+              "
+            ></i>
+          </div>
+          <div style="position: relative">
+            <label>Confirm Password</label>
+            <input
+              id="confirmPassword"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              placeholder="Confirm your password"
+              name="confirmPassword"
+              required
+              style="padding-right: 2.5rem"
+            />
+            <i
+              class="fa-solid"
+              [class.fa-eye]="!showConfirmPassword"
+              [class.fa-eye-slash]="showConfirmPassword"
+              (click)="toggleConfirmPasswordVisibility()"
+              style="
+                position: absolute;
+                right: 1rem;
+                top: 70%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                color: #aaa;
+              "
+            ></i>
+          </div>
+
+          <button class="btn btn--form">Sign up now</button>
+
+          <!-- <input type="checkbox" />
+                <input type="number" /> -->
+        </form>
+      </div>
+
+      <p class="login-terms-condition">
+        By clicking the Sign up button, you agree to our
+        <span class="primary-color">Terms & Conditions</span> and
+        <span class="primary-color">Privacy Policy</span>
+      </p>
+      <p class="login-signup">
+        Already have an account?
+        <span class="primary-color login-signup-click" routerLink="/login"
+          >Login Here!</span
+        >
+      </p>
+    </div>
+    <div class="img">
+      <img class="img" src="../../assets/images/signup.jpg" alt="" />
+    </div>
+  </div>
+</section>

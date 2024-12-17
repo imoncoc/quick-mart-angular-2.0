@@ -1,0 +1,124 @@
+.login-container {
+  /* height: calc(100vh - 262px); */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* background-color: var(--color-gray); */
+
+  color: var(--color-mainBlack);
+}
+
+.py-10 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-container-div {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cta-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 2rem;
+  row-gap: 1.5rem;
+}
+
+.cta-form label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.cta-form input,
+.cta-form select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.125rem;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cta-form input::placeholder {
+  color: #aaa;
+}
+
+.cta *:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgba(235, 152, 78, 0.5);
+}
+
+.login-title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.login-description {
+  text-align: center;
+
+  margin: 12px 0px;
+}
+
+.login-terms-condition {
+  margin: 16px 0px;
+  font-size: 14px;
+}
+
+.login-signup {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.login-signup-click {
+  cursor: pointer;
+}
+.login-signup-click:hover {
+  color: var(--primary-color-tint);
+}
+
+/* Eye */
+input[type="password"],
+input[type="text"] {
+  padding-right: 2.5rem;
+}
+
+/* Style for the toggle icon */
+.fa-eye,
+.fa-eye-slash {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  /* Adjust icon size as needed */
+  color: #aaa;
+  cursor: pointer;
+}
+
+/* Icon hover effect */
+.fa-eye:hover,
+.fa-eye-slash:hover {
+  color: #555;
+}
+
+@media (max-width: 1024px) {
+  .login-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+  }
+}
