@@ -13,6 +13,12 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'not-found',
+    loadChildren: () =>
+      import('./error/error.module').then((m) => m.ErrorModule),
+  },
+  { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({

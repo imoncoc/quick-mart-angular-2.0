@@ -22,20 +22,27 @@
       >
         Products
       </li>
-      <li class="main-nav-link" routerLink="/login" routerLinkActive="active">
+      <li
+        class="main-nav-link"
+        routerLink="/auth/login"
+        routerLinkActive="active"
+      >
         About
       </li>
-      <li class="main-nav-link" routerLink="/login" routerLinkActive="active">
+      <li
+        class="main-nav-link"
+        routerLink="/auth/login"
+        routerLinkActive="active"
+      >
         Contact
       </li>
     </ul>
   </nav>
 
-  <button class="btn-primary" routerLink="/login">Login</button>
+  <button class="btn-primary" routerLink="/auth/login">Login</button>
 
   <button class="btn-mobile-nav" (click)="toggleNavLink()">
     <i class="fa-solid fa-bars icon-mobile-nav" name="menu-outline"></i>
     <i class="fa-solid fa-xmark icon-mobile-nav" name="close-outline"></i>
   </button>
 </header>
-
