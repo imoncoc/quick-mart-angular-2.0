@@ -18,8 +18,73 @@
         </div>
       </div>
       <div>
-        <p>Description:</p>
-        <p>{{ product.description }}</p>
+        <p class="fw-600">Description:</p>
+        <p class="details-description">{{ product.description }}</p>
+      </div>
+
+      <div class="features-container">
+        <p class="fw-600 feature-brand">Features:</p>
+        <ul class="features" *ngFor="let feature of product.features">
+          <li class="features-text">{{ feature }}</li>
+        </ul>
+      </div>
+      <p><span class="fw-600">Brand: </span> {{ product.brand }}</p>
+      <div>
+        <p *ngIf="product.available">
+          <span class="fw-600">Availability: </span
+          ><i class="fa-solid fa-check stock-in-icon"></i>
+          {{ product.stock }} in Stock
+        </p>
+        <p *ngIf="!product.available">
+          <span class="fw-600">Availability: </span
+          ><i class="fa-solid fa-xmark stock-out-icon"></i> out of Stock
+        </p>
+      </div>
+      <div class="card-price-container">
+        <h3 class="card-price">
+          $
+          {{ getCalculatedDiscountPrice(product.price, product.price_off) }}
+        </h3>
+        <p class="card-price-off">{{ product.price_off }} %</p>
+      </div>
+
+      <div class="products-btn-container">
+        <div class="quantity-container-div">
+          <div class="fw-600">Quantity:</div>
+          <div class="quantity-container">
+            <button
+              class="btn quantity-btn btn--full"
+              (click)="decrementQuantity()"
+              [disabled]="quantity <= 1"
+            >
+              -
+            </button>
+            <div class="quantity-display">{{ quantity }}</div>
+            <button
+              class="btn btn--full"
+              (click)="incrementQuantity()"
+              [disabled]="quantity >= maxQuantity"
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <div>
+          <button
+            class="btn btn--form full-btn"
+            (click)="onAddToCart()"
+            *ngIf="isAlreadyAddedIntoCart"
+          >
+            Add to Cart
+          </button>
+          <button
+            class="btn btn--full full-btn"
+            (click)="onAddToCart()"
+            *ngIf="!isAlreadyAddedIntoCart"
+          >
+            Remove
+          </button>
+        </div>
       </div>
     </div>
   </div>

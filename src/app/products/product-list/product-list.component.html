@@ -27,13 +27,16 @@
           {{ product.description }}
         </p> -->
         <div class="card-price-container">
-          <h3 class="card-price">{{ product.price }}</h3>
+          <h3 class="card-price">
+            $
+            {{ getCalculatedDiscountPrice(product.price, product.price_off) }}
+          </h3>
           <p class="card-price-off">{{ product.price_off }} %</p>
         </div>
       </div>
 
       <div class="products-btn-container">
-        <button class="btn btn--form full-btn">Add to Card</button>
+        <button class="btn btn--form full-btn">Add to Cart</button>
         <button
           class="btn btn--full full-btn"
           (click)="onDetailsPage(product.id)"

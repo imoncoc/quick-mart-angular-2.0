@@ -6,10 +6,17 @@
 .details {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.details-img-container {
+.details-container {
   // background-color: var(--color-form-tint);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .details-img {
@@ -19,6 +26,13 @@
 }
 .details-container {
   padding: 40px 60px;
+
+  @media (max-width: 1280px) {
+    padding: 12px 24px;
+  }
+  @media (max-width: 1024px) {
+    padding: 20px 40px;
+  }
 }
 
 .card-brand-star {
@@ -26,7 +40,7 @@
   justify-content: start;
   align-items: center;
   margin-top: 8px;
-  margin-bottom: 12px;
+  // margin-bottom: 12px;
   gap: 12px;
 }
 
@@ -50,4 +64,84 @@
   justify-content: center;
   align-items: center;
   // margin-bottom: 0.875rem;
+}
+
+.details-description {
+  margin-top: 8px;
+}
+
+.stock-in-icon {
+  margin-right: 4px;
+  margin-left: 4px;
+  color: var(--color-green);
+}
+.stock-out-icon {
+  margin-right: 4px;
+  margin-left: 4px;
+  color: var(--color-red);
+}
+
+.card-price-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.card-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  // margin-bottom: 0.8rem;
+}
+.card-price-off {
+  margin-left: 12px;
+  border: 1px solid var(--color-form);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--color-form);
+  text-decoration: line-through;
+}
+
+.quantity-btn-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  align-items: center;
+}
+.full-btn {
+  width: 100%;
+}
+
+.features-container {
+  display: flex;
+  flex-direction: column;
+}
+.feature-brand {
+  margin-bottom: 4px;
+}
+.features {
+  margin-left: 16px;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.products-btn-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+.quantity-container-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.quantity-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
