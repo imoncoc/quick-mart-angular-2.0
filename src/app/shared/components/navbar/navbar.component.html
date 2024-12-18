@@ -1,48 +1,50 @@
-<header class="header" [ngClass]="{ 'nav-open': isNavLinkOpen }">
-  <div class="header-div remove-outline" routerLink="/">
-    <img src="../../assets/images/logo.png" class="logo" alt="" />
-    <p class="header-title">
-      Quick <span class="header-title-color">Mart</span>
-    </p>
+<header id="navbar" class="header-container">
+  <div class="header" [ngClass]="{ 'nav-open': isNavLinkOpen }">
+    <div class="header-div remove-outline" routerLink="/">
+      <img src="../../assets/images/logo.png" class="logo" alt="" />
+      <p class="header-title">
+        Quick <span class="header-title-color">Mart</span>
+      </p>
+    </div>
+    <nav class="main-nav">
+      <ul class="main-nav-list">
+        <li
+          class="main-nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ "Home" | uppercase }}
+        </li>
+        <li
+          class="main-nav-link"
+          routerLink="/products"
+          routerLinkActive="active"
+        >
+          {{ "Products" | uppercase }}
+        </li>
+        <li
+          class="main-nav-link"
+          routerLink="/auth/login"
+          routerLinkActive="active"
+        >
+          {{ "About" | uppercase }}
+        </li>
+        <li
+          class="main-nav-link"
+          routerLink="/auth/login"
+          routerLinkActive="active"
+        >
+          {{ "Contact" | uppercase }}
+        </li>
+      </ul>
+    </nav>
+
+    <button class="btn-primary" routerLink="/auth/login">Login</button>
+
+    <button class="btn-mobile-nav" (click)="toggleNavLink()">
+      <i class="fa-solid fa-bars icon-mobile-nav" name="menu-outline"></i>
+      <i class="fa-solid fa-xmark icon-mobile-nav" name="close-outline"></i>
+    </button>
   </div>
-  <nav class="main-nav">
-    <ul class="main-nav-list">
-      <li
-        class="main-nav-link"
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        {{ "Home" | uppercase }}
-      </li>
-      <li
-        class="main-nav-link"
-        routerLink="/products"
-        routerLinkActive="active"
-      >
-        {{ "Products" | uppercase }}
-      </li>
-      <li
-        class="main-nav-link"
-        routerLink="/auth/login"
-        routerLinkActive="active"
-      >
-        {{ "About" | uppercase }}
-      </li>
-      <li
-        class="main-nav-link"
-        routerLink="/auth/login"
-        routerLinkActive="active"
-      >
-        {{ "Contact" | uppercase }}
-      </li>
-    </ul>
-  </nav>
-
-  <button class="btn-primary" routerLink="/auth/login">Login</button>
-
-  <button class="btn-mobile-nav" (click)="toggleNavLink()">
-    <i class="fa-solid fa-bars icon-mobile-nav" name="menu-outline"></i>
-    <i class="fa-solid fa-xmark icon-mobile-nav" name="close-outline"></i>
-  </button>
 </header>

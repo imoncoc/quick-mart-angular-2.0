@@ -25,6 +25,8 @@
   border-radius: 5px;
   margin: 0 auto;
   padding: 0.95rem;
+  position: relative;
+  overflow: hidden;
 
   .img {
     width: 100%; // Responsive image
@@ -63,10 +65,24 @@
     white-space: nowrap;
   }
 
+  .card-price-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+
   .card-price {
     font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 0.8rem;
+    font-weight: 600;
+    // margin-bottom: 0.8rem;
+  }
+  .card-price-off {
+    margin-left: 12px;
+    border: 1px solid var(--color-form);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--color-form);
   }
 
   .card-brand-star {
@@ -75,6 +91,7 @@
     align-items: center;
     margin-top: 8px;
     margin-bottom: 12px;
+    gap: 12px;
   }
 
   .card-brand {
@@ -88,7 +105,8 @@
   .card-icon-rating {
     font-size: 0.875rem;
     margin-left: 0.25rem;
-    font-weight: 700;
+    // font-weight: 700;
+    margin-right: 4px;
   }
 
   .collection-star {
@@ -106,6 +124,40 @@
 
   .full-btn {
     width: 100%;
+  }
+
+  // .card-stock {
+  //   position: absolute;
+  //   top: 30px;
+  //   right: -40px;
+  //   width: 200px;
+  //   height: 30px;
+  //   background: var(--primary-color-tint);
+
+  //   color: #fff;
+  //   text-align: center;
+  //   line-height: 30px;
+  //   font-size: 0.875rem;
+  //   font-weight: bold;
+  //   transform: rotate(40deg);
+  //   transform-origin: center;
+  //   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  // }
+  .card-stock-out {
+    position: absolute;
+    top: 30px;
+    right: -40px;
+    width: 200px;
+    height: 30px;
+    background: var(--color-red);
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    transform: rotate(40deg);
+    transform-origin: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 }
 

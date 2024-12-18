@@ -1,3 +1,26 @@
 <div class="container my-10">
-  <p>product-details works!</p>
+  <div class="details">
+    <div class="details-img-container">
+      <img [src]="product.image" class="details-img" alt="" />
+    </div>
+    <div class="details-container">
+      <h2 class="card-title">{{ product.title }}</h2>
+      <div class="card-brand-star">
+        <p class="">{{ product.category }}</p>
+        <div class="collection-star">
+          <i
+            *ngFor="let star of [1, 2, 3, 4]"
+            class="fa-solid fa-star card-icon"
+          ></i>
+          <i class="fa-regular fa-star card-icon"></i>
+          <span class="card-icon-rating">{{ product.rating }} </span>
+          <span> ( {{ product.reviews }} reviews)</span>
+        </div>
+      </div>
+      <div>
+        <p>Description:</p>
+        <p>{{ product.description }}</p>
+      </div>
+    </div>
+  </div>
 </div>
