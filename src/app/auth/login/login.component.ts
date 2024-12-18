@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -8,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class LoginComponent implements OnInit {
   showPassword: boolean = false;
+  loginForm!: FormGroup;
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -17,5 +19,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Login');
+
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required]),
+    });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      console.log(this.loginForm);
+      this.loginForm.reset();
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
   }
 }

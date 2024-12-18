@@ -230,6 +230,10 @@ body {
   /* transition: background-color 0.3s; */
   transition: all 0.3s;
 }
+// .btn:disabled {
+//   background-color: #d4d4d4;
+//   color: #0a0826;
+// }
 
 .btn-primary {
   background-color: var(--primary-color);
@@ -359,6 +363,13 @@ body {
 
 strong {
   font-weight: 500;
+}
+
+.input-form-error {
+  color: var(--color-red);
+  margin-top: 12px;
+  margin-left: 12px;
+  display: block;
 }
 
 /**************************/

@@ -9,16 +9,24 @@
         Log in quickly — it’s free and takes just a moment.
       </p>
       <div>
-        <form class="cta-form" name="sign-up">
+        <form class="cta-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div>
             <label for="email">Email address</label>
             <input
               id="email"
               type="email"
               placeholder="me@example.com"
-              name="email"
-              required
+              [formControlName]="'email'"
+              autocomplete="off"
             />
+            <span
+              *ngIf="
+                !loginForm.get('email')?.valid &&
+                loginForm.get('email')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid email</span
+            >
           </div>
           <div style="position: relative">
             <label for="password">Password</label>
@@ -26,8 +34,7 @@
               id="password"
               [type]="showPassword ? 'text' : 'password'"
               placeholder="Enter your password"
-              name="password"
-              required
+              [formControlName]="'password'"
               style="padding-right: 2.5rem"
             />
             <i
@@ -44,9 +51,17 @@
                 color: #aaa;
               "
             ></i>
+            <span
+              *ngIf="
+                !loginForm.get('password')?.valid &&
+                loginForm.get('password')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid password</span
+            >
           </div>
 
-          <button class="btn btn--form">Login</button>
+          <button class="btn btn--form" type="submit">Login</button>
 
           <!-- <input type="checkbox" />
                 <input type="number" /> -->
