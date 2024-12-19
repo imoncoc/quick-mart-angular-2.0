@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthRoutingModule } from './auth/auth-routing.module';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ToastComponent],
   imports: [BrowserModule, AppRoutingModule, SharedModule, AuthRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

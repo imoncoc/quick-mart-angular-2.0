@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { matchValidator } from '../form-validators';
+import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +11,7 @@ import { matchValidator } from '../form-validators';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  @ViewChild(ToastComponent) toast!: ToastComponent;
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
   registerForm!: FormGroup;
@@ -20,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  constructor(private title: Title) {}
+  constructor(private title: Title, private toastService: ToastService) {}
 
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Signup');
@@ -46,6 +49,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
+      this.toastService.show('Operation was successful!', 'success');
       this.registerForm.reset();
     } else {
       this.registerForm.markAllAsTouched();

@@ -1,0 +1,13 @@
+<div class="toast-container" *ngIf="toasts.length">
+  <div
+    class="toast"
+    *ngFor="let toast of toasts; let i = index"
+    [ngClass]="toast.type"
+  >
+    <i class="toast-icon" [ngClass]="getIconClass(toast.type)"></i>
+    <p>{{ toast.message }}</p>
+    <button class="close-btn remove-outline" (click)="removeToast(i)">
+      &nbsp; &#10005;
+    </button>
+  </div>
+</div>
