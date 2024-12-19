@@ -6,26 +6,33 @@
       <img class="img" [src]="product.image" alt="Product Image" />
       <div>
         <h2 class="card-title">{{ product.title }}</h2>
-        <!-- <div class="category-and-price">
-          <p class="card-category">{{ product.category }}</p>
-          <h3 class="card-price">{{ product.price }}</h3>
-        </div> -->
 
         <div class="card-brand-star">
           <p class="">{{ product.category }}</p>
           <div class="collection-star">
+            <!-- Dynamic Full Stars -->
             <i
-              *ngFor="let star of [1, 2, 3, 4]"
+              *ngFor="let star of getStarsArray(product.rating).fullStars"
               class="fa-solid fa-star card-icon"
             ></i>
-            <i class="fa-regular fa-star card-icon"></i>
-            <span class="card-icon-rating">{{ product.rating }} </span>
-            <span> ( {{ product.reviews }} reviews)</span>
+
+            <!-- Dynamic Half Star -->
+            <i
+              *ngIf="getStarsArray(product.rating).halfStar"
+              class="fa-solid fa-star-half-stroke card-icon"
+            ></i>
+
+            <!-- Dynamic Empty Stars -->
+            <i
+              *ngFor="let star of getStarsArray(product.rating).emptyStars"
+              class="fa-regular fa-star card-icon"
+            ></i>
+
+            <span class="card-icon-rating">{{ product.rating }}</span>
+            <span>({{ product.reviews }} reviews)</span>
           </div>
         </div>
-        <!-- <p class="card-description">
-          {{ product.description }}
-        </p> -->
+
         <div class="card-price-container">
           <h3 class="card-price">
             $

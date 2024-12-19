@@ -40,7 +40,15 @@
       </ul>
     </nav>
 
-    <button class="btn-primary" routerLink="/auth/login">Login</button>
+    <div class="left-bar-container">
+      <button class="btn-primary" routerLink="/auth/login">Login</button>
+      <div class="icon-badge-container">
+        <i class="fa-solid fa-cart-shopping fa-2x"></i>
+        <span class="badge" *ngIf="cartItemsCount > 0">{{
+          cartItemsCount
+        }}</span>
+      </div>
+    </div>
 
     <button class="btn-mobile-nav" (click)="toggleNavLink()">
       <i class="fa-solid fa-bars icon-mobile-nav" name="menu-outline"></i>

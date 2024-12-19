@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/toast.service';
+import { AuthGuard } from '../auth.guard';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,12 @@ export class LoginComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  constructor(private title: Title, private toastService: ToastService) {}
+  constructor(
+    private title: Title,
+    private toastService: ToastService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Login');
@@ -53,7 +61,11 @@ export class LoginComponent implements OnInit {
       if (matchingUser) {
         // Login successful!
         this.toastService.show('Login successful!', 'success');
-        // Handle successful login (e.g., redirect to another page)
+        localStorage.setItem('loginCredential', JSON.stringify(matchingUser));
+        // this.authService.loggedCredential = matchingUser;
+        this.router.navigate(['/home']);
+        // console.log(this.authService.loggedCredential);
+        console.log(this.authService.getCredentials());
       } else {
         this.toastService.show('Invalid email/username or password!', 'error');
       }
