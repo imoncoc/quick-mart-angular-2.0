@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { matchValidator } from '../form-validators';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { ToastService } from 'src/app/shared/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterComponent implements OnInit {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
   registerForm!: FormGroup;
+  users: any[] = [];
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -23,7 +25,11 @@ export class RegisterComponent implements OnInit {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  constructor(private title: Title, private toastService: ToastService) {}
+  constructor(
+    private title: Title,
+    private toastService: ToastService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Signup');
@@ -44,14 +50,56 @@ export class RegisterComponent implements OnInit {
         matchValidator('password'),
       ]),
     });
+
+    const usersFromStorage = localStorage.getItem('users');
+    if (usersFromStorage) {
+      this.users = JSON.parse(usersFromStorage);
+    }
   }
+
+  // onSubmit() {
+  //   if (this.registerForm.valid) {
+  //     console.log(this.registerForm.value);
+  //     this.toastService.show('Signup successful!', 'success');
+  //     this.registerForm.reset();
+  //   } else {
+  //     this.toastService.show('Please try again!', 'error');
+  //     this.registerForm.markAllAsTouched();
+  //   }
+  // }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-      this.toastService.show('Operation was successful!', 'success');
-      this.registerForm.reset();
+      let newUserData = this.registerForm.value;
+
+      const existingUser = this.users.find(
+        (user) =>
+          user.email === newUserData.email ||
+          user.username === newUserData.username
+      );
+
+      if (existingUser) {
+        if (existingUser.email === newUserData.email) {
+          this.toastService.show('User Email already exists!', 'error');
+        } else {
+          this.toastService.show('Username already exists!', 'error');
+        }
+      } else {
+        newUserData = {
+          ...this.registerForm.value,
+          id: new Date().getTime(),
+        };
+
+        delete newUserData.confirmPassword;
+
+        this.users.push(newUserData);
+        localStorage.setItem('users', JSON.stringify(this.users));
+        this.toastService.show('Signup successful!', 'success');
+        this.registerForm.reset();
+        this.router.navigate(['/auth/login']);
+      }
     } else {
+      this.toastService.show('Please fill in all fields correctly!', 'error');
       this.registerForm.markAllAsTouched();
     }
   }

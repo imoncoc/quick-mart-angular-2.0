@@ -11,6 +11,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 export class LoginComponent implements OnInit {
   showPassword: boolean = false;
   loginForm!: FormGroup;
+  users: any[] = [];
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -21,22 +22,61 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Login');
 
+    const usersFromStorage = localStorage.getItem('users');
+    if (usersFromStorage) {
+      this.users = JSON.parse(usersFromStorage);
+    }
+
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        Validators.minLength(6),
+        Validators.maxLength(25),
+      ]),
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      this.toastService.show('Operation was successful!', 'success');
-      this.toastService.show('Operation was successful!', 'error');
-      this.toastService.show('Operation was successful!', 'info');
-      this.toastService.show('Operation was successful!', 'warn');
-      this.loginForm.reset();
+      const loginData = this.loginForm.value;
+
+      const matchingUser = this.users.find(
+        (user) =>
+          (user.email === loginData.email &&
+            user.password === loginData.password) ||
+          (user.username === loginData.email &&
+            user.password === loginData.password)
+      );
+
+      if (matchingUser) {
+        // Login successful!
+        this.toastService.show('Login successful!', 'success');
+        // Handle successful login (e.g., redirect to another page)
+      } else {
+        this.toastService.show('Invalid email/username or password!', 'error');
+      }
     } else {
       this.loginForm.markAllAsTouched();
     }
+  }
+
+  getPasswordError() {
+    const passwordControl = this.loginForm.get('password');
+
+    if (passwordControl?.errors) {
+      if (passwordControl.errors['required']) {
+        return 'Password is required.';
+      } else if (passwordControl.errors['pattern']) {
+        return 'Password must contain at least one number and one letter.';
+      } else if (passwordControl.errors['minlength']) {
+        return `Password must be at least ${passwordControl.errors['minlength'].requiredLength} characters long.`;
+      } else if (passwordControl.errors['maxlength']) {
+        return `Password must be no more than ${passwordControl.errors['maxlength'].requiredLength} characters long.`;
+      }
+    }
+
+    return ''; // No password error
   }
 }

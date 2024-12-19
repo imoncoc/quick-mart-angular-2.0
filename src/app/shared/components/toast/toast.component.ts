@@ -25,13 +25,14 @@ export class ToastComponent {
   getIconClass(type: string): string {
     switch (type) {
       case 'success':
-        return 'fa-solid fa-check-circle'; // FontAwesome success icon
+        return 'fa-solid fa-check';
       case 'error':
-        return 'fa-solid fa-times-circle'; // FontAwesome error icon
+        // return 'fa-solid fa-times';
+        return '';
       case 'info':
-        return 'fa-solid fa-info-circle'; // FontAwesome info icon
+        return 'fa-solid fa-info';
       case 'warn':
-        return 'fa-solid fa-exclamation-circle'; // FontAwesome warning icon
+        return 'fa-solid fa-exclamation';
       default:
         return '';
     }

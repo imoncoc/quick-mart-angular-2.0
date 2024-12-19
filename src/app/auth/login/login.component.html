@@ -11,10 +11,10 @@
       <div>
         <form class="cta-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div>
-            <label for="email">Email address</label>
+            <label for="email">Email or username</label>
             <input
               id="email"
-              type="email"
+              type="text"
               placeholder="me@example.com"
               [formControlName]="'email'"
               autocomplete="off"
@@ -60,7 +60,7 @@
               "
               class="input-form-error"
             >
-              Please enter a valid password
+              {{ getPasswordError() }}
             </span>
           </div>
 
