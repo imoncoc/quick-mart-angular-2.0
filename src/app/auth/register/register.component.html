@@ -4,16 +4,29 @@
       <p class="login-title">Sign Up</p>
       <p class="login-description">It's free and takes a minute</p>
       <div>
-        <form class="cta-form" name="sign-up">
+        <form
+          class="cta-form"
+          name="sign-up"
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()"
+        >
           <div>
             <label>Full Name</label>
             <input
               id="fullname"
               type="text"
               placeholder="Mr Jhon Doe"
-              name="fullname"
+              [formControlName]="'fullname'"
               required
             />
+            <span
+              *ngIf="
+                !registerForm.get('fullname')?.valid &&
+                registerForm.get('fullname')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid fullname</span
+            >
           </div>
           <div>
             <label>Email address</label>
@@ -21,9 +34,17 @@
               id="email"
               type="email"
               placeholder="me@example.com"
-              name="email"
+              [formControlName]="'email'"
               required
             />
+            <span
+              *ngIf="
+                !registerForm.get('email')?.valid &&
+                registerForm.get('email')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid email</span
+            >
           </div>
           <div>
             <label>User Name</label>
@@ -31,63 +52,95 @@
               id="username"
               type="text"
               placeholder="jhon"
-              name="username"
+              [formControlName]="'username'"
               required
             />
+            <span
+              *ngIf="
+                !registerForm.get('username')?.valid &&
+                registerForm.get('username')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid username</span
+            >
           </div>
 
-          <div style="position: relative">
-            <label for="password">Password</label>
-            <input
-              id="password"
-              [type]="showPassword ? 'text' : 'password'"
-              placeholder="Enter your password"
-              name="password"
-              required
-              style="padding-right: 2.5rem"
-            />
-            <i
-              class="fa-solid"
-              [class.fa-eye]="!showPassword"
-              [class.fa-eye-slash]="showPassword"
-              (click)="togglePasswordVisibility()"
-              style="
-                position: absolute;
-                right: 1rem;
-                top: 70%;
-                transform: translateY(-50%);
-                cursor: pointer;
-                color: #aaa;
+          <div>
+            <div style="position: relative">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Enter your password"
+                [formControlName]="'password'"
+                required
+                style="padding-right: 2.5rem"
+              />
+              <i
+                class="fa-solid"
+                [class.fa-eye]="!showPassword"
+                [class.fa-eye-slash]="showPassword"
+                (click)="togglePasswordVisibility()"
+                style="
+                  position: absolute;
+                  right: 1rem;
+                  top: 70%;
+                  transform: translateY(-50%);
+                  cursor: pointer;
+                  color: #aaa;
+                "
+              ></i>
+            </div>
+            <span
+              *ngIf="
+                !registerForm.get('password')?.valid &&
+                registerForm.get('password')?.touched
               "
-            ></i>
+              class="input-form-error"
+            >
+              {{ getPasswordError() }}
+            </span>
           </div>
-          <div style="position: relative">
-            <label>Confirm Password</label>
-            <input
-              id="confirmPassword"
-              [type]="showConfirmPassword ? 'text' : 'password'"
-              placeholder="Confirm your password"
-              name="confirmPassword"
-              required
-              style="padding-right: 2.5rem"
-            />
-            <i
-              class="fa-solid"
-              [class.fa-eye]="!showConfirmPassword"
-              [class.fa-eye-slash]="showConfirmPassword"
-              (click)="toggleConfirmPasswordVisibility()"
-              style="
-                position: absolute;
-                right: 1rem;
-                top: 70%;
-                transform: translateY(-50%);
-                cursor: pointer;
-                color: #aaa;
+          <div>
+            <div style="position: relative">
+              <label>Confirm Password</label>
+              <input
+                id="confirmPassword"
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                placeholder="Confirm your password"
+                [formControlName]="'confirmPassword'"
+                required
+                style="padding-right: 2.5rem"
+              />
+              <i
+                class="fa-solid"
+                [class.fa-eye]="!showConfirmPassword"
+                [class.fa-eye-slash]="showConfirmPassword"
+                (click)="toggleConfirmPasswordVisibility()"
+                style="
+                  position: absolute;
+                  right: 1rem;
+                  top: 70%;
+                  transform: translateY(-50%);
+                  cursor: pointer;
+                  color: #aaa;
+                "
+              ></i>
+            </div>
+            <span
+              *ngIf="
+                !registerForm.get('confirmPassword')?.valid &&
+                registerForm.get('confirmPassword')?.touched
               "
-            ></i>
+              class="input-form-error"
+              >Confirmation password is required.</span
+            >
+            <!-- <span *ngIf="registerForm.get('confirmPassword').hasError('matching')">
+              Password must match.
+              </span> -->
           </div>
 
-          <button class="btn btn--form">Sign up now</button>
+          <button class="btn btn--form" type="submit">Sign up now</button>
 
           <!-- <input type="checkbox" />
                 <input type="number" /> -->

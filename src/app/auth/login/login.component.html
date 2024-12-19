@@ -28,37 +28,40 @@
               >Please enter a valid email</span
             >
           </div>
-          <div style="position: relative">
-            <label for="password">Password</label>
-            <input
-              id="password"
-              [type]="showPassword ? 'text' : 'password'"
-              placeholder="Enter your password"
-              [formControlName]="'password'"
-              style="padding-right: 2.5rem"
-            />
-            <i
-              class="fa-solid"
-              [class.fa-eye]="!showPassword"
-              [class.fa-eye-slash]="showPassword"
-              (click)="togglePasswordVisibility()"
-              style="
-                position: absolute;
-                right: 1rem;
-                top: 70%;
-                transform: translateY(-50%);
-                cursor: pointer;
-                color: #aaa;
-              "
-            ></i>
+          <div>
+            <div style="position: relative">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Enter your password"
+                [formControlName]="'password'"
+                style="padding-right: 2.5rem"
+              />
+              <i
+                class="fa-solid"
+                [class.fa-eye]="!showPassword"
+                [class.fa-eye-slash]="showPassword"
+                (click)="togglePasswordVisibility()"
+                style="
+                  position: absolute;
+                  right: 1rem;
+                  top: 70%;
+                  transform: translateY(-50%);
+                  cursor: pointer;
+                  color: #aaa;
+                "
+              ></i>
+            </div>
             <span
               *ngIf="
                 !loginForm.get('password')?.valid &&
                 loginForm.get('password')?.touched
               "
               class="input-form-error"
-              >Please enter a valid password</span
             >
+              Please enter a valid password
+            </span>
           </div>
 
           <button class="btn btn--form" type="submit">Login</button>
