@@ -1,0 +1,112 @@
+<div class="container my-10">
+  <div class="checkout-container">
+    <div class="checkout-left-container">
+      <p>Shipping Address</p>
+      <div class="shipping-container">
+        <p class="current-address-title">Your current Address</p>
+        <form class="cta-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div>
+            <label>Full name</label>
+            <input
+              id="fullname"
+              type="text"
+              placeholder="Mr Jhon"
+              [formControlName]="'fullname'"
+              autocomplete="off"
+            />
+            <span
+              *ngIf="
+                !loginForm.get('fullname')?.valid &&
+                loginForm.get('fullname')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid fullname</span
+            >
+          </div>
+          <div>
+            <label for="email">Email Address</label>
+            <input
+              id="email"
+              type="text"
+              placeholder="me@example.com"
+              [formControlName]="'email'"
+              autocomplete="off"
+            />
+            <span
+              *ngIf="
+                !loginForm.get('email')?.valid &&
+                loginForm.get('email')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid email</span
+            >
+          </div>
+          <div>
+            <label>Your Phone Number</label>
+            <input
+              id="phone"
+              type="number"
+              placeholder="111-222-333"
+              [formControlName]="'phone'"
+              autocomplete="off"
+            />
+            <span
+              *ngIf="
+                !loginForm.get('phone')?.valid &&
+                loginForm.get('phone')?.touched
+              "
+              class="input-form-error"
+              >Please enter a valid phone Number</span
+            >
+          </div>
+
+          <div class="checkout-submit-btn-container">
+            <button class="btn w-full" type="submit">Submit</button>
+            <button class="btn w-full" routerLink="/cart">Cancel</button>
+          </div>
+
+          <!-- <input type="checkbox" />
+                <input type="number" /> -->
+        </form>
+      </div>
+    </div>
+    <div class="checkout-right-container">
+      <div class="checkout-back-to-cart-container">
+        <button class="btn btn--full" routerLink="/cart">
+          <i class="fa-solid fa-arrow-left-long me-2"></i>
+          Back to Cart
+        </button>
+      </div>
+      <div class="complete-order-container">
+        <div>
+          <button
+            class="btn btn--form w-full"
+            routerLink="/cart/payment-success"
+          >
+            Place Order
+          </button>
+        </div>
+        <p class="complete-order-condition-title">
+          By Placing your order, you agree to our company privacy and conditions
+          of use.
+        </p>
+        <div class="totals-container">
+          <div class="total-container">
+            <div class="total-div">
+              <p class="total-title">Subtotal</p>
+              <p class="total-price">$20</p>
+            </div>
+            <div class="total-div">
+              <p class="total-title">Shipping</p>
+              <p class="total-price">$5</p>
+            </div>
+            <div class="total-div total-div-last">
+              <p class="total-title total-title-last">Total</p>
+              <p class="total-price total-price-last">$25</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

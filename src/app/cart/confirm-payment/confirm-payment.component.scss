@@ -1,0 +1,31 @@
+.confirm-payment-container {
+  min-height: calc(100vh - 342px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-container {
+  box-shadow: var(--main-box);
+  border-radius: 8px;
+  padding: 40px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-title {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-green);
+}
+
+.payment-description {
+  color: var(--color-black);
+}
+.payment-btn-container {
+  display: flex;
+  justify-content: center;
+}

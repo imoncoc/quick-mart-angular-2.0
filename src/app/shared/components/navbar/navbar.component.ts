@@ -21,4 +21,11 @@ export class NavbarComponent implements OnInit {
     // console.log('AuthGuard: ', this.authGuard.loggedCredential);
     console.log(this.authService.getCredentials());
   }
+
+  userEmail: string = 'user@example.com'; // Replace with actual user email logic
+
+  logout() {
+    // Implement your logout functionality here
+    console.log('User logged out');
+  }
 }

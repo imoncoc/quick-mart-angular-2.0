@@ -1,0 +1,61 @@
+<div class="container my-10">
+  <div class="cart-container">
+    <div class="table-container">
+      <table class="custom-table" [style.boxShadow]="boxShadow">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tbody-tr">
+            <td>
+              <img src="https://via.placeholder.com/50" alt="Product Image" />
+            </td>
+            <td>Product 1</td>
+            <td>$50</td>
+            <td>2</td>
+            <td>$25</td>
+            <td><button class="action-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>
+              <img src="https://via.placeholder.com/50" alt="Product Image" />
+            </td>
+            <td>Product 2</td>
+            <td>$100</td>
+            <td>1</td>
+            <td>$100</td>
+            <td><button class="action-btn">Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="totals-container">
+      <div class="total-container">
+        <div class="total-div">
+          <p class="total-title">Subtotal</p>
+          <p class="total-price">$20</p>
+        </div>
+        <div class="total-div">
+          <p class="total-title">Shipping</p>
+          <p class="total-price">$5</p>
+        </div>
+        <div class="total-div total-div-last">
+          <p class="total-title total-title-last">Total</p>
+          <p class="total-price total-price-last">$25</p>
+        </div>
+
+        <button class="btn btn--form w-full" routerLink="/cart/checkout">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

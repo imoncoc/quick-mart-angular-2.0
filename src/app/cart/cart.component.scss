@@ -1,0 +1,142 @@
+.cart-container {
+  min-height: calc(100vh - 342px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Table container for responsiveness */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+/* Shadow control buttons */
+.shadow-controls {
+  margin-bottom: 10px;
+}
+
+.shadow-controls button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.shadow-controls button:hover {
+  background-color: #0056b3;
+}
+
+/* Base table styles */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px; /* For rounded edges */
+  transition: box-shadow 0.3s ease; /* Smooth transition for box-shadow */
+  border: 1px solid var(--primary-color-fade);
+}
+
+/* Header styles */
+.custom-table th {
+  background-color: #f4f4f4;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  // box-shadow: var(--main-box);
+}
+
+.tbody-tr {
+  // box-shadow: var(--main-box);
+}
+
+/* Body styles */
+.custom-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Image styling */
+.custom-table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Hover effect for rows */
+.custom-table tbody tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .custom-table td,
+  .custom-table th {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Action button styles */
+.action-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #0056b3;
+}
+
+// Total price section
+.totals-container {
+  display: flex;
+  justify-content: end;
+}
+.total-container {
+  // background-color: #0056b3;
+  width: 320px;
+  border: 1px solid var(--primary-color-fade);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.total-div {
+  display: flex;
+  justify-content: space-between;
+}
+.total-title {
+  font-weight: 500;
+}
+.total-price {
+  font-weight: 600;
+}
+.total-div-last {
+  border-top: 1px solid var(--primary-color-fade);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-top: 12px;
+}
+
+.total-title-last {
+  font-size: 20px;
+  font-weight: 600;
+}
+.total-price-last {
+  font-size: 20px;
+}

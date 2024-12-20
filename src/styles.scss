@@ -86,6 +86,7 @@ Medium: 11px
   box-sizing: border-box;
   // font-family: "Roboto", sans-serif;
   font-family: "Blinker", sans-serif;
+  // color: var(--color-mainBlack);
 }
 
 html {
@@ -371,6 +372,22 @@ strong {
   margin-top: 12px;
   margin-left: 12px;
   display: block;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.my-10 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.me-2 {
+  margin-right: 8px;
+}
+
+.text-14 {
+  font-size: 14px;
 }
 
 /**************************/

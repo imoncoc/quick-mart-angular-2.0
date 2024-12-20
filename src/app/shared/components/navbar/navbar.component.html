@@ -23,7 +23,7 @@
         >
           {{ "Products" | uppercase }}
         </li>
-        <li
+        <!-- <li
           class="main-nav-link"
           routerLink="/auth/login"
           routerLinkActive="active"
@@ -36,17 +36,28 @@
           routerLinkActive="active"
         >
           {{ "Contact" | uppercase }}
-        </li>
+        </li> -->
       </ul>
     </nav>
 
     <div class="left-bar-container">
       <button class="btn-primary" routerLink="/auth/login">Login</button>
-      <div class="icon-badge-container">
+      <div class="icon-badge-container" routerLink="/cart">
         <i class="fa-solid fa-cart-shopping fa-2x"></i>
         <span class="badge" *ngIf="cartItemsCount > 0">{{
           cartItemsCount
         }}</span>
+      </div>
+
+      <div class="user-container">
+        <i class="fa-regular fa-user fa-2x"></i>
+        <div class="dropdown-menu">
+          <p class="user-email">{{ userEmail }}</p>
+          <button class="dropdown-item" routerLink="/edit-profile">
+            Edit Profile
+          </button>
+          <button class="dropdown-item" (click)="logout()">Logout</button>
+        </div>
       </div>
     </div>
 

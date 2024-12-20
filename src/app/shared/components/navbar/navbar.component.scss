@@ -109,12 +109,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .icon-badge-container {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .fa-cart-shopping {
@@ -136,6 +137,69 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+}
+
+.user-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.user-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.user-container:hover .dropdown-menu,
+.dropdown-menu:hover {
+  display: flex;
+}
+
+.user-container i {
+  color: #333;
+  transition: color 0.3s;
+}
+
+.user-container:hover i {
+  color: #007bff; /* Change icon color on hover */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%; /* Adjust this to align properly below the icon */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: none;
+  flex-direction: column;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.user-email {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  color: #555;
 }
 
 @media (max-width: 59em) {

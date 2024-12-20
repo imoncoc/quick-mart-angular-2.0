@@ -23,6 +23,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./error/error.module').then((m) => m.ErrorModule),
   },
+  { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
   { path: '**', redirectTo: '/not-found' },
 ];
 
