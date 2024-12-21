@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeroSectionComponent } from './components/home/hero-section/hero-section.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ToastComponent } from './components/toast/toast.component';
+import { ProductListComponent } from '../products/product-list/product-list.component';
 
 @NgModule({
   declarations: [

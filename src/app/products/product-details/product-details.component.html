@@ -1,5 +1,5 @@
 <div class="container my-10">
-  <div class="details">
+  <div class="details" *ngIf="product">
     <div class="details-img-container">
       <img [src]="product.image" class="details-img" alt="" />
     </div>
@@ -24,18 +24,18 @@
 
       <div class="features-container">
         <p class="fw-600 feature-brand">Features:</p>
-        <ul class="features" *ngFor="let feature of product.features">
+        <ul class="features" *ngFor="let feature of product?.features">
           <li class="features-text">{{ feature }}</li>
         </ul>
       </div>
       <p><span class="fw-600">Brand: </span> {{ product.brand }}</p>
       <div>
-        <p *ngIf="product.available">
+        <p *ngIf="product?.available">
           <span class="fw-600">Availability: </span
           ><i class="fa-solid fa-check stock-in-icon"></i>
           {{ product.stock }} in Stock
         </p>
-        <p *ngIf="!product.available">
+        <p *ngIf="!product?.available">
           <span class="fw-600">Availability: </span
           ><i class="fa-solid fa-xmark stock-out-icon"></i> out of Stock
         </p>
@@ -43,13 +43,13 @@
       <div class="card-price-container">
         <h3 class="card-price">
           $
-          {{ getCalculatedDiscountPrice(product.price, product.price_off) }}
+          {{ product.price }}
         </h3>
         <p class="card-price-off">{{ product.price_off }} %</p>
       </div>
 
       <div class="products-btn-container">
-        <div class="quantity-container-div">
+        <!-- <div class="quantity-container-div">
           <div class="fw-600">Quantity:</div>
           <div class="quantity-container">
             <button
@@ -68,22 +68,22 @@
               +
             </button>
           </div>
-        </div>
+        </div> -->
         <div>
           <button
             class="btn btn--form full-btn"
-            (click)="onAddToCart()"
+            (click)="addToCart(product, 1)"
             *ngIf="isAlreadyAddedIntoCart"
           >
             Add to Cart
           </button>
-          <button
+          <!-- <button
             class="btn btn--full full-btn"
             (click)="onAddToCart()"
             *ngIf="!isAlreadyAddedIntoCart"
           >
             Remove
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

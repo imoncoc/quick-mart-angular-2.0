@@ -82,6 +82,7 @@
           <button
             class="btn btn--form w-full"
             routerLink="/cart/payment-success"
+            (click)="onRemoveAllTheCartsItem()"
           >
             Place Order
           </button>
@@ -94,15 +95,17 @@
           <div class="total-container">
             <div class="total-div">
               <p class="total-title">Subtotal</p>
-              <p class="total-price">$20</p>
+              <p class="total-price">${{ subtotal }}</p>
             </div>
             <div class="total-div">
               <p class="total-title">Shipping</p>
-              <p class="total-price">$5</p>
+              <p class="total-price">${{ shippingPrice }}</p>
             </div>
             <div class="total-div total-div-last">
               <p class="total-title total-title-last">Total</p>
-              <p class="total-price total-price-last">$25</p>
+              <p class="total-price total-price-last">
+                ${{ subtotal + shippingPrice }}
+              </p>
             </div>
           </div>
         </div>

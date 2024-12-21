@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -8,8 +10,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
   loginForm!: FormGroup;
+  subtotal: number = 0;
+  shippingPrice: number = 5;
 
-  constructor() {}
+  constructor(private cartService: CartService, private title: Title) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -17,6 +21,9 @@ export class CheckoutComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required]),
     });
+
+    this.subtotal = this.cartService.calculateTotalPrice();
+    this.title.setTitle('Quick Mart | Checkout');
   }
 
   onSubmit() {
@@ -25,5 +32,9 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.loginForm.markAllAsTouched();
     }
+  }
+
+  onRemoveAllTheCartsItem() {
+    this.cartService.emptyCartsItem();
   }
 }

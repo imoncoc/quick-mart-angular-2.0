@@ -1,5 +1,5 @@
-<section class="section-collections">
-  <h2 class="collection-title">Popular Collection</h2>
+<section class="section-collections my-10">
+  <!-- <h2 class="collection-title">Popular Collection</h2> -->
   <div class="container product-container">
     <!-- Repeat the card dynamically -->
     <div class="card" *ngFor="let product of products">
@@ -36,14 +36,16 @@
         <div class="card-price-container">
           <h3 class="card-price">
             $
-            {{ getCalculatedDiscountPrice(product.price, product.price_off) }}
+            {{ product.price }}
           </h3>
           <p class="card-price-off">{{ product.price_off }} %</p>
         </div>
       </div>
 
       <div class="products-btn-container">
-        <button class="btn btn--form full-btn">Add to Cart</button>
+        <button class="btn btn--form full-btn" (click)="addToCart(product, 1)">
+          Add to Cart
+        </button>
         <button
           class="btn btn--full full-btn"
           (click)="onDetailsPage(product.id)"

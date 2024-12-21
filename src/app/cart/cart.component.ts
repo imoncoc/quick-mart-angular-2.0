@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { CartService } from '../shared/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -7,10 +9,26 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  constructor(private title: Title) {}
+  cartItems: any;
+  subtotal: number = 0;
+  shippingPrice: number = 5;
+  constructor(
+    private title: Title,
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Cart');
+
+    console.log(this.cartService.getCartItems());
+    this.cartItems = this.cartService.getCartItems();
+    this.subtotal = this.cartService.calculateTotalPrice();
+  }
+
+  loadCart(): void {
+    this.cartItems = this.cartService.getCartItems();
+    // this.calculatePrices();
   }
 
   shadowLevel: number = 4;
@@ -31,5 +49,15 @@ export class CartComponent implements OnInit {
     if (this.shadowLevel > 0) {
       this.shadowLevel -= 2;
     }
+  }
+
+  onViewCartItem(id: number) {
+    this.router.navigate(['/products', id]);
+  }
+
+  removeItemFromCart(id: number) {
+    console.log('removeItemFromCart clicked');
+    this.cartService.removeFromCart(id);
+    this.loadCart();
   }
 }

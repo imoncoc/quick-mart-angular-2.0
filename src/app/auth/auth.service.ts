@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TUser } from './user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class AuthService {
     localStorage.removeItem(this.localStorageKey);
   }
 
-  getCredentials(): any {
+  getCredentials(): TUser | null {
     const credentials = localStorage.getItem(this.localStorageKey);
     return credentials ? JSON.parse(credentials) : null;
   }
