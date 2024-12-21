@@ -41,7 +41,6 @@
     </nav>
 
     <div class="left-bar-container">
-      <button class="btn-primary" routerLink="/auth/login">Login</button>
       <div class="icon-badge-container" routerLink="/cart">
         <i class="fa-solid fa-cart-shopping fa-2x"></i>
         <span class="badge" *ngIf="cartItemsCount > 0">{{
@@ -49,16 +48,25 @@
         }}</span>
       </div>
 
-      <div class="user-container">
-        <i class="fa-regular fa-user fa-2x"></i>
-        <div class="dropdown-menu">
-          <p class="user-email">{{ userEmail }}</p>
-          <button class="dropdown-item" routerLink="/edit-profile">
-            Edit Profile
-          </button>
-          <button class="dropdown-item" (click)="logout()">Logout</button>
+      <div class="dropdown" *ngIf="isUserLoggedIn">
+        <div class="dropbtn"><i class="fa-regular fa-user fa-2x"></i></div>
+        <div class="dropdown-content">
+          <p>{{ userData?.email }}</p>
+          <p class="cursor-pointer">Edit profile</p>
+          <p>
+            <button class="btn btn--form w-full" (click)="logout()">
+              logout
+            </button>
+          </p>
         </div>
       </div>
+      <button
+        class="btn-primary"
+        *ngIf="!isUserLoggedIn"
+        routerLink="/auth/login"
+      >
+        Login
+      </button>
     </div>
 
     <button class="btn-mobile-nav" (click)="toggleNavLink()">

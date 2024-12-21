@@ -60,12 +60,13 @@ export class LoginComponent implements OnInit {
 
       if (matchingUser) {
         // Login successful!
-        this.toastService.show('Login successful!', 'success');
-        localStorage.setItem('loginCredential', JSON.stringify(matchingUser));
-        // this.authService.loggedCredential = matchingUser;
-        this.router.navigate(['/home']);
-        // console.log(this.authService.loggedCredential);
-        console.log(this.authService.getCredentials());
+        // this.toastService.show('Login successful!', 'success');
+        // localStorage.setItem('loginCredential', JSON.stringify(matchingUser));
+        // // this.authService.loggedCredential = matchingUser;
+        // this.router.navigate(['/home']);
+        // // console.log(this.authService.loggedCredential);
+        // console.log(this.authService.getCredentials());
+        this.authService.login(matchingUser);
       } else {
         this.toastService.show('Invalid email/username or password!', 'error');
       }
