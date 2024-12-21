@@ -1,0 +1,155 @@
+<div class="container my-10">
+  <div class="user-container">
+    <div class="user-container-left">
+      <img class="user-img" src="../../../assets/images/user.png" alt="" />
+      <div class="user-container-left-div">
+        <p><span class="user-span">Name: </span> {{ userData?.fullname }}</p>
+        <p><span>Username: </span> {{ userData?.username }}</p>
+        <p><span>Email: </span> {{ userData?.email }}</p>
+      </div>
+    </div>
+    <div class="user-container-right">
+      <div class="login-container">
+        <div class="login-container-div cta">
+          <p class="login-title">Update Data</p>
+          <p class="login-description">It's free and takes a minute</p>
+          <div>
+            <form
+              class="cta-form"
+              name="sign-up"
+              [formGroup]="registerForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <div>
+                <label>Update full Name</label>
+                <input
+                  id="fullname"
+                  type="text"
+                  placeholder="Mr Jhon Doe"
+                  [formControlName]="'fullname'"
+                  required
+                />
+                <span
+                  *ngIf="
+                    !registerForm.get('fullname')?.valid &&
+                    registerForm.get('fullname')?.touched
+                  "
+                  class="input-form-error"
+                  >Please enter a valid fullname</span
+                >
+              </div>
+              <div>
+                <label>Update email address</label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="me@example.com"
+                  [formControlName]="'email'"
+                  required
+                />
+                <span
+                  *ngIf="
+                    !registerForm.get('email')?.valid &&
+                    registerForm.get('email')?.touched
+                  "
+                  class="input-form-error"
+                  >Please enter a valid email</span
+                >
+              </div>
+              <div>
+                <label>User Name</label>
+                <input
+                  id="username"
+                  type="text"
+                  placeholder="jhon"
+                  [formControlName]="'username'"
+                  required
+                />
+                <span
+                  *ngIf="
+                    !registerForm.get('username')?.valid &&
+                    registerForm.get('username')?.touched
+                  "
+                  class="input-form-error"
+                  >Please enter a valid username</span
+                >
+              </div>
+
+              <div>
+                <div style="position: relative">
+                  <label for="password">Update Password (optional)</label>
+                  <input
+                    id="password"
+                    [type]="showPassword ? 'text' : 'password'"
+                    placeholder="Enter your new password (optional)"
+                    [formControlName]="'password'"
+                    style="padding-right: 2.5rem"
+                  />
+                  <i
+                    class="fa-solid"
+                    [class.fa-eye]="!showPassword"
+                    [class.fa-eye-slash]="showPassword"
+                    (click)="togglePasswordVisibility()"
+                    style="
+                      position: absolute;
+                      right: 1rem;
+                      top: 70%;
+                      transform: translateY(-50%);
+                      cursor: pointer;
+                      color: #aaa;
+                    "
+                  ></i>
+                </div>
+              </div>
+              <div>
+                <div style="position: relative">
+                  <label>Confirm Password (optional)</label>
+                  <input
+                    id="confirmPassword"
+                    [type]="showConfirmPassword ? 'text' : 'password'"
+                    placeholder="Confirm your new password (optional)"
+                    [formControlName]="'confirmPassword'"
+                    style="padding-right: 2.5rem"
+                  />
+                  <i
+                    class="fa-solid"
+                    [class.fa-eye]="!showConfirmPassword"
+                    [class.fa-eye-slash]="showConfirmPassword"
+                    (click)="toggleConfirmPasswordVisibility()"
+                    style="
+                      position: absolute;
+                      right: 1rem;
+                      top: 70%;
+                      transform: translateY(-50%);
+                      cursor: pointer;
+                      color: #aaa;
+                    "
+                  ></i>
+                </div>
+              </div>
+
+              <button class="btn btn--form" type="submit">Submit</button>
+
+              <!-- <input type="checkbox" />
+                <input type="number" /> -->
+            </form>
+          </div>
+
+          <!-- <p class="login-terms-condition">
+            By clicking the Sign up button, you agree to our
+            <span class="primary-color">Terms & Conditions</span> and
+            <span class="primary-color">Privacy Policy</span>
+          </p>
+          <p class="login-signup">
+            Already have an account?
+            <span
+              class="primary-color login-signup-click"
+              routerLink="/auth/login"
+              >Login Here!</span
+            >
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

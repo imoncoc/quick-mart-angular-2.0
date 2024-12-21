@@ -30,7 +30,7 @@
 
   .img {
     width: 100%; // Responsive image
-    height: 250px;
+    height: auto;
     object-fit: cover; // Maintains aspect ratio and covers the area
     border-radius: 4px;
   }

@@ -10,7 +10,7 @@
       <ul class="main-nav-list">
         <li
           class="main-nav-link"
-          routerLink="/"
+          routerLink="/home"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
@@ -41,18 +41,22 @@
     </nav>
 
     <div class="left-bar-container">
-      <div class="icon-badge-container" routerLink="/cart">
+      <div
+        class="icon-badge-container remove-outline tooltip"
+        routerLink="/cart"
+      >
         <i class="fa-solid fa-cart-shopping fa-2x"></i>
         <span class="badge" *ngIf="cartItemsCount > 0">{{
           cartItemsCount
         }}</span>
+        <span class="tooltiptext">Cart</span>
       </div>
 
       <div class="dropdown" *ngIf="isUserLoggedIn">
         <div class="dropbtn"><i class="fa-regular fa-user fa-2x"></i></div>
         <div class="dropdown-content">
           <p>{{ userData?.email }}</p>
-          <p class="cursor-pointer">Edit profile</p>
+          <p class="cursor-pointer" routerLink="/auth/user">Edit profile</p>
           <p>
             <button class="btn btn--form w-full" (click)="logout()">
               logout
