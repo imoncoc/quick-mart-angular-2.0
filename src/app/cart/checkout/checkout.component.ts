@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { CartService } from 'src/app/shared/services/cart.service';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,8 +16,15 @@ export class CheckoutComponent implements OnInit {
   loginForm!: FormGroup;
   subtotal: number = 0;
   shippingPrice: number = 5;
+  private authSubscription: Subscription | null = null;
 
-  constructor(private cartService: CartService, private title: Title) {}
+  constructor(
+    private cartService: CartService,
+    private title: Title,
+    private authService: AuthService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -24,6 +35,17 @@ export class CheckoutComponent implements OnInit {
 
     this.subtotal = this.cartService.calculateTotalPrice();
     this.title.setTitle('Quick Mart | Checkout');
+
+    this.authSubscription = this.authService
+      .getCredentialsObservable()
+      .subscribe((userData) => {
+        if (userData) {
+          this.loginForm.patchValue({
+            fullname: userData.fullname || '',
+            email: userData.email || '',
+          });
+        }
+      });
   }
 
   onSubmit() {
@@ -36,5 +58,14 @@ export class CheckoutComponent implements OnInit {
 
   onRemoveAllTheCartsItem() {
     this.cartService.emptyCartsItem();
+  }
+  onPlaceYourOrder() {
+    if (this.loginForm.valid) {
+      this.router.navigate(['/cart/payment-success']);
+      this.cartService.emptyCartsItem();
+    } else {
+      this.loginForm.markAllAsTouched();
+      this.toastService.show('Please fill the form first!', 'warn');
+    }
   }
 }

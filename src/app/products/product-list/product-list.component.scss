@@ -29,8 +29,8 @@
   overflow: hidden;
 
   .img {
-    width: 100%; // Responsive image
-    height: auto;
+    width: 320px; // Responsive image
+    height: 214px;
     object-fit: cover; // Maintains aspect ratio and covers the area
     border-radius: 4px;
   }

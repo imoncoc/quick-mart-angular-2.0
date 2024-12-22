@@ -31,7 +31,24 @@
               {{ cartItem.product.title }}
             </td>
             <td>${{ cartItem.product.price }}</td>
-            <td>{{ cartItem.quantity }}</td>
+            <!-- <td>{{ cartItem.quantity }}</td> -->
+            <td>
+              <div class="quantity-container">
+                <button
+                  class="btn quantity-btn btn--full"
+                  (click)="decreaseCartItemQuantity(cartItem.product.id)"
+                >
+                  -
+                </button>
+                <div class="quantity-display">{{ cartItem.quantity }}</div>
+                <button
+                  class="btn btn--full"
+                  (click)="increaseCartItemQuantity(cartItem.product.id)"
+                >
+                  +
+                </button>
+              </div>
+            </td>
             <td>
               ${{ (cartItem.product.price * cartItem.quantity).toFixed(2) }}
             </td>
@@ -50,16 +67,16 @@
       <div class="total-container">
         <div class="total-div">
           <p class="total-title">Subtotal</p>
-          <p class="total-price">$ {{ subtotal }}</p>
+          <p class="total-price">$ {{ subtotal.toFixed(2) }}</p>
         </div>
         <div class="total-div">
           <p class="total-title">Shipping</p>
-          <p class="total-price">$ {{ shippingPrice }}</p>
+          <p class="total-price">$ {{ shippingPrice.toFixed(2) }}</p>
         </div>
         <div class="total-div total-div-last">
           <p class="total-title total-title-last">Total</p>
           <p class="total-price total-price-last">
-            $ {{ subtotal + shippingPrice }}
+            $ {{ totalPrice.toFixed(2) }}
           </p>
         </div>
 

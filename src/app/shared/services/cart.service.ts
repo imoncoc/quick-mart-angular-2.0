@@ -63,15 +63,15 @@ export class CartService {
   //   }
   // }
 
-  // updateCartItemQuantity(productId: string, quantity: number): void {
-  //   const cartItem = this.cartItems.find(
-  //     (item) => item.product.id === productId
-  //   );
-  //   if (cartItem) {
-  //     cartItem.quantity = quantity;
-  //     this.updateCart(); // Persist changes to localStorage
-  //   }
-  // }
+  updateCartItemQuantity(productId: number, quantity: number): void {
+    const cartItem = this.cartItems.find(
+      (item) => item.product.id === productId
+    );
+    if (cartItem) {
+      cartItem.quantity = quantity;
+      this.updateCart(); // Persist changes to localStorage
+    }
+  }
 
   emptyCartsItem(): void {
     this.cartItems = [];
@@ -105,5 +105,45 @@ export class CartService {
 
   private calculateCartCount(): number {
     return this.cartItems.reduce((a, c) => a + c.quantity, 0);
+  }
+
+  increaseQuantity(productId: number): void {
+    const cartItem = this.cartItems.find(
+      (item) => item.product.id === productId
+    );
+    if (cartItem) {
+      if (cartItem.quantity < Math.min(cartItem.product.stock, 10)) {
+        cartItem.quantity++;
+        this.toastService.show(`Quantity increased`, 'success');
+        this.updateCart();
+        console.log('Total price: ', this.calculateTotalPrice());
+      } else if (cartItem.quantity >= 10) {
+        this.toastService.show(`Cannot add more than 10 items`, 'warn');
+      } else {
+        this.toastService.show(`Stock limit reached`, 'warn');
+      }
+    }
+  }
+
+  decreaseQuantity(productId: number): void {
+    const cartItem = this.cartItems.find(
+      (item) => item.product.id === productId
+    );
+    if (cartItem) {
+      if (cartItem.quantity > 1) {
+        cartItem.quantity--;
+        this.toastService.show(
+          `Decreased quantity of ${cartItem.product.title}`,
+          'success'
+        );
+        this.updateCart();
+        console.log('Total price: ', this.calculateTotalPrice());
+      } else {
+        this.toastService.show(
+          `You cannot select less than 1 quantity for ${cartItem.product.title}`,
+          'warn'
+        );
+      }
+    }
   }
 }

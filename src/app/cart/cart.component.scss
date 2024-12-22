@@ -71,6 +71,13 @@
   border-radius: 4px;
 }
 
+.quantity-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
 /* Hover effect for rows */
 .custom-table tbody tr:hover {
   background-color: #f9f9f9;
@@ -162,6 +169,7 @@
   font-size: 20px;
   color: var(--color-red);
   transition: all 0.3s;
+  cursor: pointer;
 }
 .remove-icon:hover {
   opacity: 0.7;

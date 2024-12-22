@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
   cartItems: any;
   subtotal: number = 0;
   shippingPrice: number = 5;
+  totalPrice: number = 0;
   constructor(
     private title: Title,
     private cartService: CartService,
@@ -24,11 +25,12 @@ export class CartComponent implements OnInit {
     console.log(this.cartService.getCartItems());
     this.cartItems = this.cartService.getCartItems();
     this.subtotal = this.cartService.calculateTotalPrice();
+    this.totalPrice = this.cartService.calculateTotalPrice();
   }
 
   loadCart(): void {
     this.cartItems = this.cartService.getCartItems();
-    // this.calculatePrices();
+    this.calculatePrices();
   }
 
   shadowLevel: number = 4;
@@ -59,5 +61,19 @@ export class CartComponent implements OnInit {
     console.log('removeItemFromCart clicked');
     this.cartService.removeFromCart(id);
     this.loadCart();
+  }
+
+  increaseCartItemQuantity(id: number) {
+    this.cartService.increaseQuantity(id);
+    this.calculatePrices();
+  }
+  decreaseCartItemQuantity(id: number) {
+    this.cartService.decreaseQuantity(id);
+    this.calculatePrices();
+  }
+
+  calculatePrices(): void {
+    this.subtotal = this.cartService.calculateTotalPrice();
+    this.totalPrice = this.subtotal + this.shippingPrice;
   }
 }
