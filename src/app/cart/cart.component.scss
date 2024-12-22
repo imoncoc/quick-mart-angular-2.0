@@ -1,8 +1,11 @@
 .cart-container {
   min-height: calc(100vh - 342px);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
+  @media (max-width: 1024px) {
+    flex-direction: column-reverse;
+  }
 }
 
 /* Table container for responsiveness */
@@ -10,6 +13,11 @@
   width: 100%;
   overflow-x: auto;
   margin: 20px 0;
+}
+
+.cart-go-to-products-container {
+  display: flex;
+  justify-content: end;
 }
 
 /* Shadow control buttons */
@@ -110,8 +118,9 @@
 
 // Total price section
 .totals-container {
-  display: flex;
-  justify-content: end;
+  // display: flex;
+  // justify-content: end;
+  margin-top: 20px;
 }
 .total-container {
   // background-color: #0056b3;
@@ -121,6 +130,9 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 }
 
 .total-div {

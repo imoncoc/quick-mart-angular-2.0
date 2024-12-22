@@ -22,7 +22,7 @@
     "price_off": 5,
     "image": "https://images.unsplash.com/photo-1616071359129-9b03697771a8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "rating": 4.7,
-    "reviews": 430,
+    "reviews": 75,
     "description": "Ergonomic gaming mouse with a sleek design, customizable RGB lighting, and adjustable DPI for precision gaming.",
     "stock": 25,
     "available": true,
@@ -182,7 +182,7 @@
     "price_off": 3,
     "image": "https://images.unsplash.com/photo-1623567238235-940ff1311da7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "rating": 4.3,
-    "reviews": 150,
+    "reviews": 98,
     "description": "Keep your tablet or e-reader securely positioned with this adjustable stand. Its portable and sturdy design makes it a must-have accessory for home, office, or travel.",
     "stock": 60,
     "available": true,
@@ -198,7 +198,7 @@
     "price_off": 5,
     "image": "https://images.unsplash.com/photo-1519458246479-6acae7536988?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "rating": 4.7,
-    "reviews": 430,
+    "reviews": 96,
     "description": "Protect your camera gear with this comprehensive cleaning kit. Includes a microfiber cloth, cleaning solution, and tools for safely cleaning lenses and sensors.",
     "stock": 20,
     "available": true,
@@ -278,7 +278,7 @@
     "price_off": 5,
     "image": "https://images.unsplash.com/photo-1536584754829-12214d404f32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "rating": 4.5,
-    "reviews": 320,
+    "reviews": 85,
     "description": "Spacious and durable backpack for carrying camera gear.",
     "stock": 25,
     "available": true,
@@ -301,7 +301,7 @@
     "brand": "SteadyShot",
     "material": "Metal",
     "features": ["3-axis stabilization", "Lightweight", "Ergonomic design"],
-    "category": "Stabilizers"
+    "category": "Cameras"
   },
   {
     "id": 20,
@@ -317,6 +317,6 @@
     "brand": "LensPro",
     "material": "Glass and Metal",
     "features": ["Long-range", "Sharp focus", "Lightweight"],
-    "category": "Lenses"
+    "category": "Cameras"
   }
 ]

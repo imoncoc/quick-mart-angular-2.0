@@ -1,0 +1,40 @@
+<div class="product-category-container sticky-nav">
+  <p class="heading">Category</p>
+
+  <!-- Category List for Larger Screens -->
+  <div class="category-list" *ngIf="isDropdownVisible || isLargeScreen">
+    <button
+      class="category-button"
+      [class.active]="selectedCategory === 'All Categories'"
+      (click)="selectCategory('All Categories')"
+    >
+      All Categories
+    </button>
+    <button
+      *ngFor="let category of categories"
+      class="category-button"
+      [class.active]="selectedCategory === category"
+      (click)="selectCategory(category)"
+    >
+      {{ category }}
+    </button>
+  </div>
+
+  <!-- Sort By Dropdown -->
+  <div class="sort-container">
+    <p class="heading sort-heading">Sort by Price</p>
+    <select id="sortPrice" (change)="onSortChange($event)">
+      <option value="lowToHigh">Low to High</option>
+      <option value="highToLow">High to Low</option>
+    </select>
+  </div>
+
+  <!-- Toggle Button for Category Dropdown on Small Screens -->
+  <button
+    *ngIf="!isLargeScreen"
+    class="toggle-category-btn"
+    (click)="toggleCategoryDropdown()"
+  >
+    {{ isDropdownVisible ? "Hide Categories" : "Show Categories" }}
+  </button>
+</div>

@@ -1,65 +1,88 @@
 <section class="section-collections my-10">
   <!-- <h2 class="collection-title">Popular Collection</h2> -->
-  <div class="container product-container">
+  <div class="container">
     <!-- Repeat the card dynamically -->
-    <div class="card" *ngFor="let product of products">
-      <img class="img" [src]="product.image" alt="Product Image" />
+    <div class="category-and-product-list-container">
       <div>
-        <h2 class="card-title">{{ product.title }}</h2>
+        <app-product-by-category
+          (categorySelected)="onCategorySelected($event)"
+          (sortByPrice)="sortProducts($event)"
+        ></app-product-by-category>
+      </div>
+      <div class="product-container">
+        <ng-container *ngFor="let product of products">
+          <div class="card">
+            <img class="img" [src]="product.image" alt="Product Image" />
+            <div>
+              <h2 class="card-title">
+                {{
+                  product.title.length > 20
+                    ? product.title.substring(0, 20) + "..."
+                    : product.title
+                }}
+              </h2>
 
-        <div class="card-brand-star">
-          <p class="">{{ product.category }}</p>
-          <div class="collection-star">
-            <!-- Dynamic Full Stars -->
-            <i
-              *ngFor="let star of getStarsArray(product.rating).fullStars"
-              class="fa-solid fa-star card-icon"
-            ></i>
+              <div class="card-brand-star">
+                <p class="">{{ product.category }}</p>
+                <div class="collection-star">
+                  <!-- Dynamic Full Stars -->
+                  <i
+                    *ngFor="let star of getStarsArray(product.rating).fullStars"
+                    class="fa-solid fa-star card-icon"
+                  ></i>
 
-            <!-- Dynamic Half Star -->
-            <i
-              *ngIf="getStarsArray(product.rating).halfStar"
-              class="fa-solid fa-star-half-stroke card-icon"
-            ></i>
+                  <!-- Dynamic Half Star -->
+                  <i
+                    *ngIf="getStarsArray(product.rating).halfStar"
+                    class="fa-solid fa-star-half-stroke card-icon"
+                  ></i>
 
-            <!-- Dynamic Empty Stars -->
-            <i
-              *ngFor="let star of getStarsArray(product.rating).emptyStars"
-              class="fa-regular fa-star card-icon"
-            ></i>
+                  <!-- Dynamic Empty Stars -->
+                  <i
+                    *ngFor="
+                      let star of getStarsArray(product.rating).emptyStars
+                    "
+                    class="fa-regular fa-star card-icon"
+                  ></i>
 
-            <span class="card-icon-rating">{{ product.rating }}</span>
-            <span class="text-14">({{ product.reviews }} reviews)</span>
+                  <span class="card-icon-rating">{{ product.rating }}</span>
+                  <span class="text-14">({{ product.reviews }} reviews)</span>
+                </div>
+              </div>
+
+              <div class="card-price-container">
+                <h3 class="card-price">
+                  $
+                  {{ product.price }}
+                </h3>
+                <p class="card-price-off">{{ product.price_off }} %</p>
+              </div>
+            </div>
+
+            <div class="products-btn-container">
+              <button
+                class="btn btn--form full-btn"
+                (click)="addToCart(product, 1)"
+              >
+                Add to Cart
+              </button>
+              <button
+                class="btn btn--full full-btn"
+                (click)="onDetailsPage(product.id)"
+              >
+                View Details
+              </button>
+            </div>
+
+            <p
+              *ngIf="!product.available"
+              [ngClass]="!product.available && 'card-stock-out'"
+            >
+              {{ "Sold Out" }}
+            </p>
           </div>
-        </div>
-
-        <div class="card-price-container">
-          <h3 class="card-price">
-            $
-            {{ product.price }}
-          </h3>
-          <p class="card-price-off">{{ product.price_off }} %</p>
-        </div>
+        </ng-container>
       </div>
-
-      <div class="products-btn-container">
-        <button class="btn btn--form full-btn" (click)="addToCart(product, 1)">
-          Add to Cart
-        </button>
-        <button
-          class="btn btn--full full-btn"
-          (click)="onDetailsPage(product.id)"
-        >
-          View Details
-        </button>
-      </div>
-
-      <p
-        *ngIf="!product.available"
-        [ngClass]="!product.available && 'card-stock-out'"
-      >
-        {{ "Sold Out" }}
-      </p>
     </div>
   </div>
 </section>

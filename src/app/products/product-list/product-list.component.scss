@@ -1,6 +1,15 @@
+.category-and-product-list-container {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
 .product-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); // Default: 4 columns
+  grid-template-columns: repeat(3, 1fr); // Default: 4 columns
   gap: 24px;
 
   // 3 columns at 1024px
@@ -27,12 +36,22 @@
   padding: 0.95rem;
   position: relative;
   overflow: hidden;
+  height: 414px;
 
   .img {
     width: 320px; // Responsive image
     height: 214px;
     object-fit: cover; // Maintains aspect ratio and covers the area
     border-radius: 4px;
+
+    @media (max-width: 1024px) {
+      width: 320px;
+    }
+
+    // 1 column for small devices
+    @media (max-width: 640px) {
+      width: 360px;
+    }
   }
 
   .card-title {
