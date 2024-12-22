@@ -4,6 +4,7 @@ import { TProduct } from '../products.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { BehaviorSubject, debounceTime, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -14,6 +15,10 @@ export class ProductListComponent implements OnInit {
   products: TProduct[] = [];
   allProducts: TProduct[] = [];
   filteredProducts: TProduct[] = [];
+  searchTerm: string = '';
+  private searchSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
+    ''
+  );
 
   constructor(
     private router: Router,
@@ -30,7 +35,6 @@ export class ProductListComponent implements OnInit {
     this.http.get<TProduct[]>('assets/data/products.json').subscribe(
       (data) => {
         this.allProducts = data;
-        console.log('this product: ', data);
 
         // Get the category from query parameters and filter the products
         const categoryFromUrl =
@@ -43,10 +47,24 @@ export class ProductListComponent implements OnInit {
     );
 
     // Watch for changes in query parameters and update the filter
+    // Watch for changes in query parameters and update the filter
     this.route.queryParams.subscribe((params) => {
       const category = params['category'] || null;
       this.filterProductsByCategory(category);
+      this.searchTerm = params['searchTerm'] || ''; // Set the search term from query params
+      this.searchSubject.next(this.searchTerm); // Trigger search immediately if the search term is present
     });
+
+    // Debounced search logic
+    this.searchSubject
+      .pipe(
+        debounceTime(300),
+        switchMap((term) => this.searchProducts(term))
+      )
+      .subscribe((filtered) => {
+        this.filteredProducts = filtered;
+        this.products = filtered;
+      });
   }
 
   onDetailsPage(id: number) {
@@ -76,13 +94,11 @@ export class ProductListComponent implements OnInit {
   }
 
   filterProductsByCategory(category: string | null): void {
-    console.log('filterProductsByCategory: ', category);
     if (category) {
       this.products = this.allProducts.filter(
         (product) => product.category === category
       );
     } else if (category === 'All Categories') {
-      console.log('All Categories: ', this.allProducts);
       this.products = [...this.allProducts];
     } else {
       // Reset to all products when no category is selected
@@ -92,7 +108,6 @@ export class ProductListComponent implements OnInit {
 
   // Handle category selection
   onCategorySelected(category: string | null): void {
-    console.log('onCategorySelected: ', category);
     const queryParams = category ? { category } : {};
     this.router.navigate([], {
       relativeTo: this.route,
@@ -107,5 +122,23 @@ export class ProductListComponent implements OnInit {
     } else if (order === 'highToLow') {
       this.products.sort((a, b) => b.price - a.price);
     }
+  }
+
+  searchProducts(searchTerm: string) {
+    const filtered = this.allProducts.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    return of(filtered); // Return the filtered products as an observable
+  }
+
+  // Handle search input change
+  onSearchTermChange(searchTerm: string): void {
+    this.searchTerm = searchTerm;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { searchTerm: searchTerm },
+      queryParamsHandling: 'merge', // Retain other query parameters (like category)
+    });
+    this.searchSubject.next(searchTerm); // Trigger search
   }
 }

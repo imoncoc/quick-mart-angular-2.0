@@ -112,13 +112,13 @@ export class CartService {
       (item) => item.product.id === productId
     );
     if (cartItem) {
-      if (cartItem.quantity < Math.min(cartItem.product.stock, 10)) {
+      if (cartItem.quantity < cartItem.product.stock) {
         cartItem.quantity++;
         this.toastService.show(`Quantity increased`, 'success');
         this.updateCart();
         console.log('Total price: ', this.calculateTotalPrice());
-      } else if (cartItem.quantity >= 10) {
-        this.toastService.show(`Cannot add more than 10 items`, 'warn');
+      } else if (cartItem.quantity >= cartItem.product.stock) {
+        this.toastService.show(`Cannot add more than stock items`, 'warn');
       } else {
         this.toastService.show(`Stock limit reached`, 'warn');
       }

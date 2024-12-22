@@ -19,22 +19,27 @@
       {{ category }}
     </button>
   </div>
+  <select
+    *ngIf="!isLargeScreen"
+    class="category-dropdown"
+    (change)="onCategoryDropdownChange($event)"
+  >
+    <option value="All Categories">All Categories</option>
+    <option *ngFor="let category of categories" [value]="category">
+      {{ category }}
+    </option>
+  </select>
 
   <!-- Sort By Dropdown -->
-  <div class="sort-container">
+  <div>
     <p class="heading sort-heading">Sort by Price</p>
+  </div>
+  <div class="sort-container">
     <select id="sortPrice" (change)="onSortChange($event)">
       <option value="lowToHigh">Low to High</option>
       <option value="highToLow">High to Low</option>
     </select>
   </div>
 
-  <!-- Toggle Button for Category Dropdown on Small Screens -->
-  <button
-    *ngIf="!isLargeScreen"
-    class="toggle-category-btn"
-    (click)="toggleCategoryDropdown()"
-  >
-    {{ isDropdownVisible ? "Hide Categories" : "Show Categories" }}
-  </button>
+  <!-- Category Selector for Small Screens -->
 </div>

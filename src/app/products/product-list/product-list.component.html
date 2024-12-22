@@ -2,6 +2,18 @@
   <!-- <h2 class="collection-title">Popular Collection</h2> -->
   <div class="container">
     <!-- Repeat the card dynamically -->
+    <div class="topnav">
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search Product.."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchTermChange($event)"
+        />
+        <i class="fas fa-search search-icon"></i>
+      </div>
+    </div>
     <div class="category-and-product-list-container">
       <div>
         <app-product-by-category

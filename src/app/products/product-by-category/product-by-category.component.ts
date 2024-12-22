@@ -61,4 +61,9 @@ export class ProductByCategoryComponent implements OnInit {
     const sortOrder = event.target.value;
     this.sortByPrice.emit(sortOrder); // Emit the sort order to the parent
   }
+
+  onCategoryDropdownChange(event: Event): void {
+    const selectedCategory = (event.target as HTMLSelectElement).value;
+    this.selectCategory(selectedCategory);
+  }
 }
