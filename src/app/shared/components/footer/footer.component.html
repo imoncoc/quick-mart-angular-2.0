@@ -1,4 +1,4 @@
-<footer class="footer">
+<!-- <footer class="footer">
   <div class="container footer-container">
     <div class="footer-grid">
       <div class="footer-nav">
@@ -15,7 +15,7 @@
         <div class="footer-link remove-outline">About</div>
       </div>
 
-      <!-- Left site -->
+
       <div class="footer-icon-div">
         <p><i class="fa-brands fa-2x fa-square-facebook footer-icon"></i></p>
         <p><i class="fa-brands fa-2x fa-instagram footer-icon"></i></p>
@@ -27,5 +27,85 @@
       Copyright <span class="name">©{{ newData.getFullYear() }}</span> All
       rights reserved by <span class="name">Md Imon Hossain</span>.
     </p>
+  </div>
+</footer> -->
+
+<footer class="footer">
+  <div class="container grid grid--footer">
+    <div class="logo-col">
+      <div class="footer-div remove-outline" routerLink="/">
+        <img src="../../assets/images/logo.png" class="logo" alt="" />
+        <p class="footer-title">
+          Quick <span class="footer-title-color">Mart</span>
+        </p>
+      </div>
+
+      <ul class="social-links">
+        <li>
+          <a class="footer-link" href="#"
+            ><i class="fa-brands fa-2x fa-square-facebook footer-icon"></i
+          ></a>
+        </li>
+        <li>
+          <a class="footer-link" href="#">
+            <i class="fa-brands fa-2x fa-instagram footer-icon"></i>
+          </a>
+        </li>
+        <li>
+          <a class="footer-link" href="#">
+            <i class="fa-brands fa-2x fa-square-twitter footer-icon"></i>
+          </a>
+        </li>
+      </ul>
+
+      <p class="copyright">
+        Copyright &copy; <span class="year">2027</span> by Omnifood, Inc. All
+        rights reserved.
+      </p>
+    </div>
+
+    <div class="address-col">
+      <p class="footer-heading">Contact us</p>
+      <address class="contacts">
+        <p class="address">
+          623 Harrison St., 2nd Floor, San Francisco, CA 94107
+        </p>
+        <p>
+          <a class="footer-link" href="tel:415-201-6370">415-201-6370</a><br />
+          <a class="footer-link" href="mailto:imon.swe@gmail.com">{{
+            "imon.swe@gmail.com"
+          }}</a>
+        </p>
+      </address>
+    </div>
+
+    <nav class="nav-col">
+      <p class="footer-heading">Account</p>
+      <ul class="footer-nav">
+        <li><a class="footer-link" href="#">Create account</a></li>
+        <li><a class="footer-link" href="#">Sign in</a></li>
+        <li><a class="footer-link" href="#">iOS app</a></li>
+        <li><a class="footer-link" href="#">Android app</a></li>
+      </ul>
+    </nav>
+
+    <nav class="nav-col">
+      <p class="footer-heading">Company</p>
+      <ul class="footer-nav">
+        <li><a class="footer-link" href="#">About Omnifood</a></li>
+        <li><a class="footer-link" href="#">For Business</a></li>
+        <li><a class="footer-link" href="#">Cooking partners</a></li>
+        <li><a class="footer-link" href="#">Careers</a></li>
+      </ul>
+    </nav>
+
+    <nav class="nav-col">
+      <p class="footer-heading">Resources</p>
+      <ul class="footer-nav">
+        <li><a class="footer-link" href="#">Recipe directory </a></li>
+        <li><a class="footer-link" href="#">Help center</a></li>
+        <li><a class="footer-link" href="#">Privacy & terms</a></li>
+      </ul>
+    </nav>
   </div>
 </footer>

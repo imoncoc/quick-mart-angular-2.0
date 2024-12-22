@@ -393,6 +393,29 @@ strong {
 .cursor-pointer {
   cursor: pointer;
 }
-/**************************/
-/* Query */
-/**************************/
+
+.quick-section-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.quick-section-description {
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--color-grey);
+  text-align: center;
+  @media (max-width: 1024px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}

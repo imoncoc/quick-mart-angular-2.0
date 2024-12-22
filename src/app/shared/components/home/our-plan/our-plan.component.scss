@@ -1,0 +1,55 @@
+.our-plan {
+  padding: 40px 0px;
+}
+
+.our-plan-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  place-content: center;
+  justify-content: center;
+  align-content: center;
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.our-plan-item {
+  width: 320px;
+  padding: 24px;
+  border-radius: 4px;
+}
+.our-plan-title {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.625rem;
+  font-weight: 600;
+  color: var(--color-mainBlack);
+}
+.our-plan-description {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.625rem;
+  font-weight: 500;
+}
+
+.our-plan-item-genuine {
+  background-color: #edf5f6;
+}
+.our-plan-item-delivery {
+  background-color: #ffeeee;
+}
+.our-plan-item-returns {
+  background-color: #fff4d6;
+}
+.our-plan-item-support {
+  background-color: var(--primary-color-fade);
+}
