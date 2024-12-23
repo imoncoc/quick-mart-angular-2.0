@@ -7,6 +7,8 @@ import { HeroSectionComponent } from './components/home/hero-section/hero-sectio
 import { AppRoutingModule } from '../app-routing.module';
 import { OurPartnerComponent } from './components/home/our-partner/our-partner.component';
 import { OurPlanComponent } from './components/home/our-plan/our-plan.component';
+import { TopProductsComponent } from './components/home/top-products/top-products.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,9 @@ import { OurPlanComponent } from './components/home/our-plan/our-plan.component'
     HeroSectionComponent,
     OurPartnerComponent,
     OurPlanComponent,
+    TopProductsComponent,
   ],
-  imports: [CommonModule, AppRoutingModule],
+  imports: [CommonModule, AppRoutingModule, HttpClientModule],
   exports: [NavbarComponent, FooterComponent],
 })
 export class SharedModule {}

@@ -1,0 +1,37 @@
+<div class="container" style="padding: 60px 0px">
+  <div class="top-products">
+    <p class="quick-section-title">Top Products</p>
+    <p class="quick-section-description">
+      Enjoy the peace of mind that comes with genuine products, speedy delivery,
+      hassle-free returns, and comprehensive protection.
+    </p>
+  </div>
+
+  <div class="top-products-container">
+    <div *ngFor="let product of allProducts | slice : 0 : 8" class="">
+      <div class="card">
+        <img [src]="product.image" alt="" />
+        <div class="card__content">
+          <p class="card__title">{{ product.title }}</p>
+          <p class="card__description">
+            {{
+              product.description.length > 150
+                ? product.description.substring(0, 150) + "..."
+                : product.description
+            }}
+          </p>
+          <div class="card__features">
+            <div *ngFor="let feature of product.features" class="card__feature">
+              <p>{{ feature }}</p>
+            </div>
+          </div>
+          <p class="card__price">{{ product.price | currency }}</p>
+          <button class="card__button" (click)="goToDetailPage(product.id)">
+            View Details
+          </button>
+          <!-- <button class="card__button secondary">Source Code</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

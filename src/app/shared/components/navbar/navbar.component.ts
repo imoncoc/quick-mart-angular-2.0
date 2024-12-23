@@ -27,17 +27,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.authService.getCredentials());
     this.cartItemsCount = this.cartService.cartCount;
     this.cartService.onCartChange = () => {
       this.cartItemsCount = this.cartService.cartCount;
     };
 
-    // this.userData = this.authService.getCredentials();
-
-    // this.isUserLoggedIn = !!this.authService.getCredentials();
-
-    // Subscribe to credential changes
     this.authSubscription = this.authService
       .getCredentialsObservable()
       .subscribe((userData) => {
@@ -46,16 +40,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Replace with actual user email logic
-
   logout() {
-    // Implement your logout functionality here
     console.log('User logged out');
     this.authService.logout();
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe to prevent memory leaks
     this.authSubscription?.unsubscribe();
   }
 }
