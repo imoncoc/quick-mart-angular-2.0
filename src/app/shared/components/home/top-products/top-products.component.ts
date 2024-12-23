@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TProduct } from 'src/app/products/products.interface';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-top-products',
@@ -11,7 +12,7 @@ import { TProduct } from 'src/app/products/products.interface';
 export class TopProductsComponent implements OnInit {
   allProducts: TProduct[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.http.get<TProduct[]>('assets/data/products.json').subscribe(
@@ -38,5 +39,10 @@ export class TopProductsComponent implements OnInit {
 
   goToDetailPage(id: number) {
     this.router.navigate(['products', id]);
+  }
+
+
+  addToCart(product: TProduct) {
+    this.cartService.addToCart(product);
   }
 }

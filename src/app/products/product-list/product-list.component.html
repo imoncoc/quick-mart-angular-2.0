@@ -86,8 +86,10 @@
 
               <div class="card-price-container">
                 <h3 class="card-price">
-                  $
-                  {{ product.price }}
+                  {{ product.price | currency }}
+                  <span class="card-price-off-span">
+                    {{ product.price + (product.price * 10) / 100 | currency }}
+                  </span>
                 </h3>
                 <p class="card-price-off">{{ product.price_off }} %</p>
               </div>

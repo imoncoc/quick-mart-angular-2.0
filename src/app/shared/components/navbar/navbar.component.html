@@ -45,7 +45,7 @@
         class="icon-badge-container remove-outline tooltip"
         routerLink="/cart"
       >
-        <i class="fa-solid fa-cart-shopping fa-2x"></i>
+        <i class="fa-solid fa-cart-shopping navbar-icon"></i>
         <span class="badge" *ngIf="cartItemsCount > 0">{{
           cartItemsCount
         }}</span>
@@ -53,7 +53,9 @@
       </div>
 
       <div class="dropdown" *ngIf="isUserLoggedIn">
-        <div class="dropbtn"><i class="fa-regular fa-user fa-2x"></i></div>
+        <div class="dropbtn">
+          <i class="fa-regular fa-user navbar-icon"></i>
+        </div>
         <div class="dropdown-content">
           <p>{{ userData?.email }}</p>
           <p class="cursor-pointer" routerLink="/auth/user">Edit profile</p>
@@ -71,11 +73,11 @@
       >
         Login
       </button>
-    </div>
 
-    <button class="btn-mobile-nav" (click)="toggleNavLink()">
-      <i class="fa-solid fa-bars icon-mobile-nav" name="menu-outline"></i>
-      <i class="fa-solid fa-xmark icon-mobile-nav" name="close-outline"></i>
-    </button>
+      <button class="btn-mobile-nav" (click)="toggleNavLink()">
+        <i class="fa-solid fa-bars icon-mobile-nav" name="menu-outline"></i>
+        <i class="fa-solid fa-xmark icon-mobile-nav" name="close-outline"></i>
+      </button>
+    </div>
   </div>
 </header>

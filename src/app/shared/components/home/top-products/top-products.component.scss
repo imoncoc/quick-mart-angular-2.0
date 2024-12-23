@@ -9,6 +9,12 @@
   gap: 24px;
 }
 
+.top-product-img {
+  width: 150%; /* Ensure the image takes up the full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+}
+
 .card {
   position: relative;
   width: 350px;
@@ -80,6 +86,11 @@
   line-height: 1.4;
 }
 
+.card__buttons {
+  display: flex;
+  gap: 10px;
+}
+
 .card__button {
   padding: 15px;
   border-radius: 8px;
@@ -130,6 +141,13 @@
   font-weight: 600;
   margin: 0.8rem 0px;
   color: var(--color-footer);
+}
+
+.card-price-off-span {
+  font-size: 1.2rem;
+  margin-left: 8px;
+  text-decoration: line-through;
+  color: var(--color-gray);
 }
 
 .card__features {

@@ -2,15 +2,15 @@
   <div class="top-products">
     <p class="quick-section-title">Top Products</p>
     <p class="quick-section-description">
-      Enjoy the peace of mind that comes with genuine products, speedy delivery,
-      hassle-free returns, and comprehensive protection.
+      Discover top-notch quality, unbeatable prices, swift delivery, and
+      seamless shopping for your favorite products.
     </p>
   </div>
 
   <div class="top-products-container">
     <div *ngFor="let product of allProducts | slice : 0 : 8" class="">
       <div class="card">
-        <img [src]="product.image" alt="" />
+        <img class="top-product-img" [src]="product.image" alt="" />
         <div class="card__content">
           <p class="card__title">{{ product.title }}</p>
           <p class="card__description">
@@ -25,11 +25,24 @@
               <p>{{ feature }}</p>
             </div>
           </div>
-          <p class="card__price">{{ product.price | currency }}</p>
-          <button class="card__button" (click)="goToDetailPage(product.id)">
-            View Details
-          </button>
-          <!-- <button class="card__button secondary">Source Code</button> -->
+          <p class="card__price">
+            {{ product.price | currency }}
+
+            <span class="card-price-off-span">
+              {{ product.price + (product.price * 10) / 100 | currency }}
+            </span>
+          </p>
+          <div class="card__buttons">
+            <button class="card__button w-full" (click)="addToCart(product)">
+              Add to Card
+            </button>
+            <button
+              class="btn btn--full w-full"
+              (click)="goToDetailPage(product.id)"
+            >
+              View Details
+            </button>
+          </div>
         </div>
       </div>
     </div>

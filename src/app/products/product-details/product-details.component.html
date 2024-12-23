@@ -1,4 +1,4 @@
-<div class="container my-10">
+<div class="container my-10 product-details-container">
   <div class="details" *ngIf="product">
     <div class="details-img-container">
       <img [src]="product.image" class="details-img" alt="" />
@@ -6,7 +6,7 @@
     <div class="details-container">
       <h2 class="card-title">{{ product.title }}</h2>
       <div class="card-brand-star">
-        <p class="">{{ product.category }}</p>
+        <p class="detail-product-category">{{ product.category }}</p>
         <div class="collection-star">
           <i
             *ngFor="let star of [1, 2, 3, 4]"
@@ -42,13 +42,15 @@
       </div>
       <div class="card-price-container">
         <h3 class="card-price">
-          $
-          {{ product.price }}
+          {{ product.price | currency }}
+          <span class="card-price-off-span">
+            {{ product.price + (product.price * 10) / 100 | currency }}
+          </span>
         </h3>
         <p class="card-price-off">{{ product.price_off }} %</p>
       </div>
 
-      <div class="products-btn-container">
+      <div class="">
         <!-- <div class="quantity-container-div">
           <div class="fw-600">Quantity:</div>
           <div class="quantity-container">
@@ -71,7 +73,7 @@
         </div> -->
         <div>
           <button
-            class="btn btn--form full-btn"
+            class="btn btn--form full-btn w-full"
             (click)="addToCart(product, 1)"
             *ngIf="isAlreadyAddedIntoCart"
           >

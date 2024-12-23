@@ -1,3 +1,9 @@
+.sticky-nav {
+  position: sticky;
+  top: 12%;
+  overflow: hidden;
+}
+
 .product-category-container {
   display: flex;
   flex-direction: column;
