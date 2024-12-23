@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { TProduct } from '../products.interface';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { BehaviorSubject, debounceTime, of, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -25,7 +26,8 @@ export class ProductListComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     private http: HttpClient,
-    private title: Title
+    private title: Title,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -58,12 +60,15 @@ export class ProductListComponent implements OnInit {
     // Debounced search logic
     this.searchSubject
       .pipe(
-        debounceTime(300),
-        switchMap((term) => this.searchProducts(term))
+        debounceTime(500),
+        switchMap((term) => {
+          this.searchTerm = term; // Update the searchTerm
+          return this.searchProducts(term);
+        })
       )
-      .subscribe((filtered) => {
-        this.filteredProducts = filtered;
-        this.products = filtered;
+      .subscribe(() => {
+        const category = this.route.snapshot.queryParamMap.get('category');
+        this.filterProductsByCategory(category); // Apply combined filtering
       });
   }
 
@@ -96,14 +101,22 @@ export class ProductListComponent implements OnInit {
   filterProductsByCategory(category: string | null): void {
     if (category) {
       this.products = this.allProducts.filter(
-        (product) => product.category === category
+        (product) =>
+          product.category === category &&
+          product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     } else if (category === 'All Categories') {
-      this.products = [...this.allProducts];
+      this.products = this.allProducts.filter((product) =>
+        product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
     } else {
       // Reset to all products when no category is selected
-      this.products = [...this.allProducts];
+      this.products = this.allProducts.filter((product) =>
+        product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
     }
+
+    this.filteredProducts = [...this.products]; // Update filteredProducts to reflect the applied filter
   }
 
   // Handle category selection

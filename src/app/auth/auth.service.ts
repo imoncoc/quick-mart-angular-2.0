@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { TUser } from './user.interface';
 import { Router } from '@angular/router';
 import { ToastService } from '../shared/toast.service';
@@ -23,14 +23,26 @@ export class AuthService {
     return credentials ? JSON.parse(credentials) : null;
   }
 
+  private isProtectedRoute(route: string): boolean {
+    const protectedRoutes = [
+      '/cart/checkout',
+      '/protected',
+      '/user',
+      '/cart/payment-success',
+    ]; // Add all your protected routes here
+    return protectedRoutes.some((protectedRoute) =>
+      route.startsWith(protectedRoute)
+    );
+  }
+
   isLoggedIn(): boolean {
     return this.credentialsSubject.value !== null;
   }
 
-  login(credentials: TUser): void {
+  login(credentials: TUser, returnUrl: string = '/home'): void {
     localStorage.setItem(this.localStorageKey, JSON.stringify(credentials));
     this.credentialsSubject.next(credentials);
-    this.router.navigate(['/home']);
+    this.router.navigate([returnUrl]);
     this.toastService.show('Login successful!', 'success');
   }
 
@@ -38,6 +50,16 @@ export class AuthService {
     localStorage.removeItem(this.localStorageKey);
     this.credentialsSubject.next(null); // Notify subscribers
     this.toastService.show('Logout successful!', 'success');
+
+    const currentRoute = this.router.url; // Get the current route
+    const isProtected = this.isProtectedRoute(currentRoute);
+
+    if (isProtected) {
+      // If on a protected route, redirect to login with returnUrl
+      this.router.navigate(['/auth/login'], {
+        queryParams: { returnUrl: currentRoute },
+      });
+    }
   }
 
   getCredentials(): TUser | null {
@@ -46,5 +68,11 @@ export class AuthService {
 
   getCredentialsObservable(): Observable<TUser | null> {
     return this.credentialsSubject.asObservable(); // Expose as observable
+  }
+
+  get isAuthenticated$(): Observable<boolean> {
+    return this.credentialsSubject
+      .asObservable()
+      .pipe(map((credentials) => credentials !== null));
   }
 }

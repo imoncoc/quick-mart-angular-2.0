@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/toast.service';
 import { AuthGuard } from '../auth.guard';
 import { AuthService } from '../auth.service';
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   showPassword: boolean = false;
   loginForm!: FormGroup;
   users: any[] = [];
+  returnUrl: string = '/home';
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -24,11 +25,18 @@ export class LoginComponent implements OnInit {
     private title: Title,
     private toastService: ToastService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Login');
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/home']);
+    }
 
     const usersFromStorage = localStorage.getItem('users');
     if (usersFromStorage) {
@@ -59,14 +67,9 @@ export class LoginComponent implements OnInit {
       );
 
       if (matchingUser) {
-        // Login successful!
-        // this.toastService.show('Login successful!', 'success');
-        // localStorage.setItem('loginCredential', JSON.stringify(matchingUser));
-        // // this.authService.loggedCredential = matchingUser;
-        // this.router.navigate(['/home']);
-        // // console.log(this.authService.loggedCredential);
-        // console.log(this.authService.getCredentials());
-        this.authService.login(matchingUser);
+        const returnUrl =
+          this.route.snapshot.queryParams['returnUrl'] || '/home';
+        this.authService.login(matchingUser, this.returnUrl);
       } else {
         this.toastService.show('Invalid email/username or password!', 'error');
       }

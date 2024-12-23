@@ -25,14 +25,17 @@ export class ToastComponent {
   getIconClass(type: string): string {
     switch (type) {
       case 'success':
-        return 'fa-solid fa-check';
+        // return 'fa-solid fa-check';
+        return '';
       case 'error':
         // return 'fa-solid fa-times';
         return '';
       case 'info':
-        return 'fa-solid fa-info';
+        // return 'fa-solid fa-info';
+        return '';
       case 'warn':
-        return 'fa-solid fa-exclamation';
+        // return 'fa-solid fa-exclamation';
+        return '';
       default:
         return '';
     }

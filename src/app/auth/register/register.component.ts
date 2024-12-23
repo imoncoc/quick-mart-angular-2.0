@@ -5,6 +5,7 @@ import { matchValidator } from '../form-validators';
 import { ToastComponent } from 'src/app/shared/components/toast/toast.component';
 import { ToastService } from 'src/app/shared/toast.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -28,11 +29,16 @@ export class RegisterComponent implements OnInit {
   constructor(
     private title: Title,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Signup');
+
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/home']); // Redirect to home if already logged in
+    }
 
     this.registerForm = new FormGroup({
       fullname: new FormControl('', [Validators.required]),

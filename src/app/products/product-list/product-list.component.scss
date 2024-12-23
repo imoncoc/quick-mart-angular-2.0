@@ -201,7 +201,7 @@
 
 .search-icon {
   margin-left: 10px;
-  color: #ccc; /* Adjust color as needed */
+  color: var(--color-mainBlack); /* Adjust color as needed */
   position: absolute;
   top: 50%;
   right: 10px;
@@ -224,4 +224,83 @@
   .search-input {
     font-size: 14px;
   }
+}
+
+// New Search Bar
+// Search Design
+.InputContainer {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-color: var(--primary-color-fade);
+  // background-color: var(--primary-color-fade);
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  padding-left: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  // box-shadow: var(--main-box);
+  margin-bottom: 24px;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  caret-color: var(--primary-color);
+  // background-color: var(--primary-color-fade);
+  background-color: #eee;
+  color: var(--color-mainBlack);
+}
+.InputContainer:hover {
+  border: 1px solid var(--primary-color);
+}
+
+.labelforsearch {
+  cursor: text;
+  padding: 0px 12px;
+}
+
+.searchIcon {
+  width: 15px;
+}
+
+.InputContainer:hover .searchIcon {
+  color: red;
+}
+
+.border {
+  height: 40%;
+  width: 1.3px;
+  background-color: rgb(223, 223, 223);
+}
+
+.micIcon {
+  width: 12px;
+}
+
+.micButton {
+  padding: 0px 15px 0px 12px;
+  border: none;
+  background-color: transparent;
+  height: 40px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.searchIcon path {
+  fill: rgb(114, 114, 114);
+}
+
+.micIcon path {
+  fill: rgb(255, 81, 0);
+}
+
+.micButton:hover {
+  background-color: rgb(255, 230, 230);
+  transition-duration: 0.3s;
 }

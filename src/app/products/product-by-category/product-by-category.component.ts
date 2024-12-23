@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-by-category',
@@ -27,39 +28,47 @@ export class ProductByCategoryComponent implements OnInit {
     'Lighting',
   ];
 
-  selectedCategory: string = 'All Categories'; // Default category
+  selectedCategory: string = 'All Categories';
   isDropdownVisible: boolean = false;
-  isLargeScreen: boolean = window.innerWidth > 1024; // Check if screen size is larger than 1024px
+  isLargeScreen: boolean = window.innerWidth > 1024;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const category = params['category'];
+      if (category && this.categories.includes(category)) {
+        this.selectedCategory = category;
+      } else {
+        this.selectedCategory = 'All Categories';
+      }
+    });
+  }
 
-  // Handle screen size changes for responsiveness
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.isLargeScreen = event.target.innerWidth > 1024;
     if (this.isLargeScreen) {
-      this.isDropdownVisible = true; // Always show categories on larger screens
+      this.isDropdownVisible = true;
     }
   }
 
   toggleCategoryDropdown(): void {
     if (!this.isLargeScreen) {
-      this.isDropdownVisible = !this.isDropdownVisible; // Toggle for smaller screens
+      this.isDropdownVisible = !this.isDropdownVisible;
     }
   }
 
   selectCategory(category: string): void {
     this.selectedCategory = category;
-    this.isDropdownVisible = false; // Close the dropdown after selection
-    this.categorySelected.emit(category === 'All Categories' ? null : category); // Emit null for 'All Categories'
-    // console.log('Selected Category:', category);
+    this.isDropdownVisible = false;
+    this.categorySelected.emit(category === 'All Categories' ? null : category);
+    console.log('Selected Category:', category);
   }
 
   onSortChange(event: any): void {
     const sortOrder = event.target.value;
-    this.sortByPrice.emit(sortOrder); // Emit the sort order to the parent
+    this.sortByPrice.emit(sortOrder);
   }
 
   onCategoryDropdownChange(event: Event): void {

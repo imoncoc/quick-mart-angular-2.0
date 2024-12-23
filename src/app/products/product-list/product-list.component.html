@@ -2,7 +2,26 @@
   <!-- <h2 class="collection-title">Popular Collection</h2> -->
   <div class="container">
     <!-- Repeat the card dynamically -->
-    <div class="topnav">
+    <div class="InputContainer">
+      <input
+        placeholder="Search Product"
+        id="input"
+        class="input remove-outline"
+        name="text"
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchTermChange($event)"
+      />
+
+      <label class="labelforsearch" for="input">
+        <svg class="searchIcon" viewBox="0 0 512 512">
+          <path
+            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+          ></path>
+        </svg>
+      </label>
+    </div>
+    <!-- <div class="topnav">
       <div class="search-container">
         <input
           type="text"
@@ -13,13 +32,16 @@
         />
         <i class="fas fa-search search-icon"></i>
       </div>
-    </div>
+    </div> -->
     <div class="category-and-product-list-container">
       <div>
         <app-product-by-category
           (categorySelected)="onCategorySelected($event)"
           (sortByPrice)="sortProducts($event)"
         ></app-product-by-category>
+      </div>
+      <div *ngIf="products.length === 0" class="no-products">
+        <h2>No Products Found</h2>
       </div>
       <div class="product-container">
         <ng-container *ngFor="let product of products">
