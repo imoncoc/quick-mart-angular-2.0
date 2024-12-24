@@ -318,5 +318,21 @@
     "material": "Glass and Metal",
     "features": ["Long-range", "Sharp focus", "Lightweight"],
     "category": "Cameras"
+  },
+  {
+    "id": 21,
+    "title": "Fitness Tracker",
+    "price": 105.99,
+    "price_off": 22,
+    "image": "https://images.unsplash.com/photo-1557935728-e6d1eaabe558?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "rating": 4.1,
+    "reviews": 98,
+    "description": "Stylish and versatile fitness tracker with real-time heart rate monitoring, sleep analysis, and multi-sport modes.",
+    "stock": 5,
+    "available": true,
+    "brand": "FitBuddy",
+    "material": "Silicone",
+    "features": ["Heart rate monitor", "Step tracker", "Waterproof"],
+    "category": "Wearables"
   }
 ]
