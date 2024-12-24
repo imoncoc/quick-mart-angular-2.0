@@ -144,6 +144,9 @@
   flex-wrap: wrap;
   gap: 4rem;
   // overflow-y: hidden;
+  @media (max-width: 1024px) {
+    flex-direction: column-reverse;
+  }
 }
 .logo-col {
   display: flex;
