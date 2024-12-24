@@ -75,4 +75,8 @@ export class ProductByCategoryComponent implements OnInit {
     const selectedCategory = (event.target as HTMLSelectElement).value;
     this.selectCategory(selectedCategory);
   }
+
+  trackById(index: number, item: any): number {
+    return item.id;
+  }
 }

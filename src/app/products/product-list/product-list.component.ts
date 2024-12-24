@@ -147,6 +147,10 @@ export class ProductListComponent implements OnInit {
       queryParams: { searchTerm: searchTerm },
       queryParamsHandling: 'merge',
     });
-    this.searchSubject.next(searchTerm); 
+    this.searchSubject.next(searchTerm);
+  }
+
+  trackById(index: number, item: any): number {
+    return item.id;
   }
 }

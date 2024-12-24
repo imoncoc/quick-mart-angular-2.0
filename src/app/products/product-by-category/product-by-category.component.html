@@ -11,7 +11,7 @@
       All Categories
     </button>
     <button
-      *ngFor="let category of categories"
+      *ngFor="let category of categories; trackBy: trackById"
       class="category-button"
       [class.active]="selectedCategory === category"
       (click)="selectCategory(category)"

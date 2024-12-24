@@ -76,4 +76,7 @@ export class CartComponent implements OnInit {
     this.subtotal = this.cartService.calculateTotalPrice();
     this.totalPrice = this.subtotal + this.shippingPrice;
   }
+  trackById(index: number, item: any): number {
+    return item.id;  // Track by the unique 'id' of the item
+  }
 }

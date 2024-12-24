@@ -8,7 +8,7 @@
   </div>
 
   <div class="top-products-container">
-    <div *ngFor="let product of allProducts | slice : 0 : 8" class="">
+    <div *ngFor="let product of allProducts | slice : 0 : 8; trackBy: trackById" class="">
       <div class="card">
         <img class="top-product-img" [src]="product.image" alt="" />
         <div class="card__content">

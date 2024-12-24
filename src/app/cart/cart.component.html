@@ -21,7 +21,10 @@
           </thead>
           <tbody>
             <!-- Loop through cartItems -->
-            <tr *ngFor="let cartItem of cartItems" [class.tbody-tr]="true">
+            <tr
+              *ngFor="let cartItem of cartItems; trackBy: trackById"
+              [class.tbody-tr]="true"
+            >
               <td
                 (click)="onViewCartItem(cartItem.product.id)"
                 style="cursor: pointer"

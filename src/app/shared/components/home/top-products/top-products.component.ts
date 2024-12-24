@@ -12,7 +12,11 @@ import { CartService } from 'src/app/shared/services/cart.service';
 export class TopProductsComponent implements OnInit {
   allProducts: TProduct[] = [];
 
-  constructor(private http: HttpClient, private router: Router, private cartService: CartService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.http.get<TProduct[]>('assets/data/products.json').subscribe(
@@ -41,8 +45,11 @@ export class TopProductsComponent implements OnInit {
     this.router.navigate(['products', id]);
   }
 
-
   addToCart(product: TProduct) {
     this.cartService.addToCart(product);
+  }
+
+  trackById(index: number, item: any): number {
+    return item.id;
   }
 }
