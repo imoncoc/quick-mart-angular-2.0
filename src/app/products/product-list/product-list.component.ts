@@ -33,12 +33,12 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Quick Mart | Products');
 
-    // Fetch products and apply the category filter if needed
+
     this.http.get<TProduct[]>('assets/data/products.json').subscribe(
       (data) => {
         this.allProducts = data;
 
-        // Get the category from query parameters and filter the products
+
         const categoryFromUrl =
           this.route.snapshot.queryParamMap.get('category');
         this.filterProductsByCategory(categoryFromUrl);
@@ -48,27 +48,26 @@ export class ProductListComponent implements OnInit {
       }
     );
 
-    // Watch for changes in query parameters and update the filter
-    // Watch for changes in query parameters and update the filter
+
     this.route.queryParams.subscribe((params) => {
       const category = params['category'] || null;
       this.filterProductsByCategory(category);
-      this.searchTerm = params['searchTerm'] || ''; // Set the search term from query params
-      this.searchSubject.next(this.searchTerm); // Trigger search immediately if the search term is present
+      this.searchTerm = params['searchTerm'] || '';
+      this.searchSubject.next(this.searchTerm);
     });
 
-    // Debounced search logic
+
     this.searchSubject
       .pipe(
         debounceTime(500),
         switchMap((term) => {
-          this.searchTerm = term; // Update the searchTerm
+          this.searchTerm = term;
           return this.searchProducts(term);
         })
       )
       .subscribe(() => {
         const category = this.route.snapshot.queryParamMap.get('category');
-        this.filterProductsByCategory(category); // Apply combined filtering
+        this.filterProductsByCategory(category);
       });
   }
 
@@ -76,16 +75,12 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['products', id]);
   }
 
-  // getCalculatedDiscountPrice(price: number, discount: number): number {
-  //   let discountedPrice = price - (price * discount) / 100;
 
-  //   return parseFloat(discountedPrice.toFixed(2));
-  // }
 
   getStarsArray(rating: number) {
-    const fullStars = Math.floor(rating); // Number of full stars
-    const halfStar = rating % 1 !== 0; // Check for half star
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // Remaining empty stars
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0;
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
     return {
       fullStars: Array(fullStars).fill(0),
@@ -110,16 +105,16 @@ export class ProductListComponent implements OnInit {
         product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     } else {
-      // Reset to all products when no category is selected
+
       this.products = this.allProducts.filter((product) =>
         product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
 
-    this.filteredProducts = [...this.products]; // Update filteredProducts to reflect the applied filter
+    this.filteredProducts = [...this.products];
   }
 
-  // Handle category selection
+
   onCategorySelected(category: string | null): void {
     const queryParams = category ? { category } : {};
     this.router.navigate([], {
@@ -141,17 +136,17 @@ export class ProductListComponent implements OnInit {
     const filtered = this.allProducts.filter((product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    return of(filtered); // Return the filtered products as an observable
+    return of(filtered);
   }
 
-  // Handle search input change
+
   onSearchTermChange(searchTerm: string): void {
     this.searchTerm = searchTerm;
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { searchTerm: searchTerm },
-      queryParamsHandling: 'merge', // Retain other query parameters (like category)
+      queryParamsHandling: 'merge',
     });
-    this.searchSubject.next(searchTerm); // Trigger search
+    this.searchSubject.next(searchTerm); 
   }
 }

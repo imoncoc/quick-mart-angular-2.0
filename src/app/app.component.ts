@@ -24,14 +24,12 @@ export class AppComponent implements OnInit, AfterViewInit {
       const currentRoute = this.router.url;
 
       if (!isAuthenticated && this.isProtectedRoute(currentRoute)) {
-        // Redirect only if the route is protected
         this.router.navigate(['/auth/login'], {
           queryParams: { returnUrl: currentRoute },
         });
       }
     });
 
-    // Subscribe to route changes for debugging
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         console.log('Navigating to:', event.url);
@@ -39,14 +37,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // Helper method to check if the current route is protected
   private isProtectedRoute(route: string): boolean {
     const protectedRoutes = [
       '/cart/checkout',
       '/protected',
       '/user',
       '/cart/payment-success',
-    ]; // Add all protected routes here
+    ];
 
     return protectedRoutes.some((protectedRoute) =>
       route.startsWith(protectedRoute)

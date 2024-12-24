@@ -48,28 +48,13 @@ export class CartService {
     this.updateCart();
   }
 
-  // updateCartItem(product: TProduct, quantity: number): void {
-  //   const item = this.cartItems.find(
-  //     (cartItem) => cartItem.product.id === product.id
-  //   );
-
-  //   if (item) {
-  //     if (quantity <= 0) {
-  //       this.removeFromCart(product.id);
-  //     } else {
-  //       item.quantity = quantity;
-  //       this.updateCart();
-  //     }
-  //   }
-  // }
-
   updateCartItemQuantity(productId: number, quantity: number): void {
     const cartItem = this.cartItems.find(
       (item) => item.product.id === productId
     );
     if (cartItem) {
       cartItem.quantity = quantity;
-      this.updateCart(); // Persist changes to localStorage
+      this.updateCart();
     }
   }
 
