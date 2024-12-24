@@ -279,7 +279,7 @@
   color: var(--color-mainBlack);
 }
 .InputContainer:hover {
-  border: 1px solid var(--primary-color);
+  outline: 2px solid var(--primary-color-fade);
 }
 
 .labelforsearch {
