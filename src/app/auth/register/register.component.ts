@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9-_?/]+)$'),
         Validators.minLength(6),
         Validators.maxLength(25),
         matchValidator('confirmPassword', true),
@@ -117,7 +117,7 @@ export class RegisterComponent implements OnInit {
       if (passwordControl.errors['required']) {
         return 'Password is required.';
       } else if (passwordControl.errors['pattern']) {
-        return 'Password must contain at least one number and one letter.';
+        return 'Password must contain at least one letter, one number, and may include -, _, ?, or /.';
       } else if (passwordControl.errors['minlength']) {
         return `Password must be at least ${passwordControl.errors['minlength'].requiredLength} characters long.`;
       } else if (passwordControl.errors['maxlength']) {
@@ -127,4 +127,5 @@ export class RegisterComponent implements OnInit {
 
     return ''; // No password error
   }
+
 }
